@@ -868,11 +868,20 @@ In the future, I plan to investigate all three of these persistences with my foc
 ---
 # Asymmetric Graph Homology: PPH and MH
 
-![:img 45%, 25%, 30%](figs/persistent_path.png)
-
 .footnote[(1) Samir Chowdhury and Facundo Mémoli. 2018. Persistent path homology of directed networks. In Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA '18). Society for Industrial and Applied Mathematics, USA, 1152–1169. (2) T. Leinster and M. Shulman, “Magnitude homology of enriched categories and metric
 spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021.
 ]
+
+![:img 45%, 25%, 30%](figs/persistent_path.png)
+
+--
+![:img 15%, 35%, 45%](figs/cycle_filtration_delta_1.png)
+
+--
+![:img 15%, 35%, 45%](figs/cycle_filtration_delta_2.png)
+--
+![:img 15%, 35%, 45%](figs/cycle_filtration_delta_3.png)
+
 
 ---
 # All Systems Considered

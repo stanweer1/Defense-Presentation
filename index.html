@@ -14,7 +14,7 @@
     <script src="libs/freezeframe/freezeframe.min.js"></script>
     <script src="libs/xaringanExtra-freezeframe/freezeframe-init.js"></script>
     <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":".freeze-gif","trigger":"click","overlay":true,"responsive":true,"warnings":true}</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xc3d092947234138bfae5f2b19e60915","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"db08bfa56c384be78bcd30c7cfdc3266","expires":1}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -66,18 +66,21 @@ background-position: 100% 65%
 &lt;!-- ------------------------------------------------------- --&gt;
 &lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
 
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
+
 # Acknowledgements for This Work
 
 ???
-Before starting, I would like to thank all of my collaborators, Dr Khasawneh, Dr Munch, Dr Mamis, Dr Subrahmaniyam, and Josh Templeman. I would also like to thank Airforce Office of Scientific Research for funding this work.
+Before starting, I would like to acknowledge the funding sources, particularly AFOSR and Frontera Fellowship, and my collaborators, Firas and Narayan, who made the work in today's presentation possible.
 
 ---
 # Motivation
 
 ???
-Dynamical systems are widespread in nature. The motivation for my thesis stems from the growing need to develop robust methodologies for understanding and interpreting dynamic phenomena in various domains, such as aeroelasticity, chemical synthesis, neuroscience, financial markets, travel and transport, and population dynamics.
+The motivation for my thesis stems from the growing need to develop robust methodologies for understanding and interpreting dynamic phenomena. Dynamical systems are widespread in various domains, such as aeroelasticity, chemical synthesis, neuroscience, financial markets, travel and transport, and population dynamics.
 
-My objective for this thesis is to leverage stochsatic systems theory and topologicla data analysis for understanding dynamical systems.
+My objective for this dissertation was to leverage stochsatic systems theory, machine learning and topologicla data analysis for understanding dynamical systems better.
 
 --
 ![:img 15%, 15%, 20%](figs/aero.png)
@@ -109,17 +112,24 @@ Objective: Leverage stochastic systems theory and topological data analysis for 
 
 ???
 
-A signal from a dynamical system which exhibits no clear pattern may be stochastic or deterministically chaotic, possibly with observation noise. It is important to be able to determine this so that the right tools are used for analysing the system. So, Chapter 1 of my thesis discusses a novel technique for identifying whether a time series is from a deterministic or a stochastic system. 
+In my comprehensive exam I had proposed some objetives which I planned to achieve. Chapters 1, 3, 5 and 7 were in progress then. Since then, I have been able to complete all of the targets I had set earlier. 
 
-Then, in Chapter 2, I talk about a topology driven detection method for a bifurcation in stochastic systems referred to as phenomenological (P) bifurcation. 
+So let's take a look over what the disseration entails.
+A signal from a dynamical system which exhibits no clear pattern may be stochastic or deterministically chaotic. It is important to be able to determine this so that the right tools are used for analysing the system.
+For stochastic systems, we are typically concerned with the probability distributions while for deterministic systems--the concern is with basins and attractors. 
+So, Chapter 1 of my thesis is focused on a novel technique for identifying whether a discrete time series is from a stochastic or non-stochastic system. Chapter 8 is an additional algorithm for robustly computing the level-crossings in a discrete signal -- which is another handy tool for discrete signal processing.
 
-In Chapters 3 to 5, I explore some applications of P-bifurcations in real-world systems such as modelling of aerofoil dynamic stall flutter, epidemic modelling with compartmental models, and epileptic seizure detection. 
+So once it's been decided that the system is stochastic, we need to determine the the underlying distribution of the system. So in Chapters 2 and 3, I propose topology driven methods for density estimation and detection of changepoints/bifurcations in stochastic systems. 
 
-Then, Chapter 6 is an attempt at proposing a refined and less computationally expensive algorithm for distinguising basins of attraction from attractors in deterministic systems using a markov chain based algorithm. 
+Then in Chapters 4 and 5, I explore some applications of stochastic bifurcations in real-world systems such as modelling of flutter instability in aerofoils, and modelling of epidemics with compartmental models. 
 
-Finally, Chapter 7 discusses a noise robust topology-based algorithm for detecting all zero-crossings in a discrete time signal.
+In Chapter 6, I use topological machine learning and simplicial complex based methods to detect bifurcations in EEG systems specifically for the case of epileptic seizure classification. 
+
+Finally, in Chapter 7 I shift my focus to deterministic systems, and approach the problem of distinguising basins of attraction from attractors using a markov chain and topology approach.
 
 Overall, this thesis is aimed at contributing to advancing the applications of topology in signal processing and dynamical systems. 
+
+Due to time constraints, today I will just be focusing on chapter 1, chapter 6 and chap 7. 
 
 --
 
@@ -181,9 +191,7 @@ Now we look at the modern variant of homology, known as persistent homology. Thi
 
 We keep track of when structures appear and disappear in homology, giving us information about the structure of the space itself. 
 
-When a new structure appears, we say that it has taken birth, and when it disappears, we say that it has died. These birth and death pairs are recorded on a persistence diagram which we'll look at on the next slides.
-
-Next, I'll be recapping three forms of persistent homology which we'll need for this presentation. 
+When a new structure appears, we say that it has taken birth, and when it disappears, we say that it has died. These birth and death pairs are recorded on a persistence diagram which we'll look at on the next few slides.
 
 --
 
@@ -210,9 +218,17 @@ Encoded on **Persistence Diagrams** as (b, d)
 ]
 
 ---
-# Persistence Diagram from Filtration
+# Persistence Diagram from Filtering a Simplicial Complex
 
 ???
+
+Let's look at an example of how to construct a PD given a simplicial complex. The left side, shows the building blocks of a simplicial complex - 0 for node, 1 for edge, 2 for triangle/face and 3 for a tetrahedron. During the filtration, connected components are represented as H0 and loops are repressented as H1. 
+
+So for the example simplicaial complex in the middle panel--we can vary the filtration threshold, compute the 0 and 1 homology groups, and record them on the persistence diagram displated in the right most panel. 
+
+So at a filtration value of 1, we see all nodes and three edges connecting four of those. At filtration value of 2, the other node combines with the rest marking the death of 4. ON the otehr hand, a loop is born due to these nodes connecting with each other. At filtration value of 4, another loop is born with the addition of this new edge. At filtration of 8, a face is added which kills the second loop while another is born. At filtration of 9, the addition of the last face causes that loop to die. Beyond this filtration, no death occurs and this connected component along with the loop always persist. 
+
+So given a simplicail complex, you can filter it this way to get a persistence diagram. 
 
 --
 
@@ -220,38 +236,38 @@ Encoded on **Persistence Diagrams** as (b, d)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt1.png)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt2.png)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt3.png)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt4.png)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt5.png)
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt6.png)
 
 
 --
 
-![:img 80%, 10%, 20%](figs/white_block1.png)
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 80%, 10%, 30%](figs/filt7.png)
 
 
@@ -260,9 +276,8 @@ Encoded on **Persistence Diagrams** as (b, d)
 # Signal Persistence
 
 ???
-This is the last persistence type we'll be using. Technically, it's the same as the image persistence except that it's being computed for 1D signals instead of 2D images. In this case, it's easier to see the persistence as a pair of minimas and maximas of the 1D signal. 
-
-E.g. in the animation, we see three persistence points taking birth when the level reaches the minimas, and dying one by one when the level reaches their corresponding maximas. 
+For a 1D signal, the persistence can be computed similarly. Let's cover a simple example for it as well. In this case, it's easier to see the persistence diagram points as pairs of minimas and maximas of the 1D signal. 
+E.g. in the animation, we see three persistence points taking birth when the level reaches the minimas, and dying one by one when the filtration value reaches their corresponding maximas. 
 
 --
 
@@ -273,7 +288,7 @@ E.g. in the animation, we see three persistence points taking birth when the lev
 ---
 
 ???
-In Chapter 1, I will discuss two recently defined properties on stochastic signals which I hypothesize can be used to differentiate deterministic signal from stochastic signals. The first one connects the number of points with a fixed persistence as a function of quadratic variation, and the second one connects the persistence points in a specific box to the number of zero-crossings of the signal. 
+Let's dive into Chapter 1 now where I discuss the problem of distinguishing stochastic signals from non-stochastic. First, I'll talk about the SOTA algos, their limitations, some mathematical background and then a new mathematical theorem which connects the persistence diagram of a signal with its pathwise or statistical characteristics. Then I show that this theorem can be used to accurately classify signals as sotchastic or non stochastic for a wide array of cases. 
 
 --
 
@@ -284,21 +299,19 @@ In Chapter 1, I will discuss two recently defined properties on stochastic signa
 
 ???
 
-- Dynamical Systems Metrics: Lyapunov exponents, Correlation dimension, Entropy (KS entropy, sample entropy)  
+The current state-of-the-art includes
 
-Limitations: Require long+clean series, sensitive to noise
+methods like recurrence plots and Delay embeddings
+These are Sensitive to parameters, degrade under noise and short signals, and have a high comp cost in high dimensions
 
-- Surrogate Data Testing: Hypothesis, Compare statistics against randomized surrogates  
+Then we have methods rooted in metrics of Dynamical Systems suhc as lyapunov exponents, Correlation dimension or Entropy
+These typically Require a long and clean signal
 
-Limitations: Requires hypothesis formulation, Results often inconclusive, Not for direct classification  
+Then we have machine/deep learning approaches which have gotten popular in this field recently.
+These are limited by their generalizability. Separate models need to be trained for each system of differential equations. 
 
-- Spectral / Statistical Methods: Power spectral density (PSD), Autocorrelation, higher-order moments  
-
-Limitations: Chaos can mimic stochastic spectra
-
-- Recurrence / Phase Space Methods: Recurrence plots, Delay embeddings + geometric analysis  
-
-Limitations: Sensitive to parameters, Degrade under noise and short signals, expensive in high dimensions
+Finally, we have methods which use surrogate Data. These devise a Hypothesis and Compare statistics against randomized surrogates
+The limitations include having to generate random surrogates which can be computationally expensive along with the obvious limitation of results frequently being inconclusive leading to everyone's deep seated hatred for hypothesis testing
 
 --
 
@@ -310,8 +323,7 @@ Limitations: Sensitive to parameters, Degrade under noise and short signals, exp
 
 ???
 
-These theorems I mentioned have been derived from trees constructed from signals. Let's look at how such a tree is generated. 
-Given a continous function, a tree can be constructed from it by setting a root node against the global minima and maxima (shown as the red point at the bottom), from there moving upwards towards the maxima, and then adding a branch every time you hit a local minima. Each of these branches is given the length of the global maxima on the side of the branch, as shown in this animation. 
+Okay, so jumping into some mathematical background for this. The theorem on persistence of stochastic signals which I mentioned earlier has been derived from trees constructed from stochastic signals. So let's look at how such a tree is generated. Given a continous signal, a tree can be constructed from it by setting a root node against the global minima and maxima (shown as the red point at the bottom), from there moving upwards towards the maxima, and then adding a branch every time you hit a local minima. Each of these branches is given the length of the global maxima on the side of the branch, as shown in this animation. 
 
 --
 
@@ -368,11 +380,14 @@ That is, each branch in the tree we constructed corresponds to one point in the 
 
 ???
 
-As I mentioned, these theorems have technically been defined on trees built from stochastic signals, but since the tree and persistence diagram have a one-to-one relation, the theorems can be used to connect the persistence diagram with signal properties directly.
+As I mentioned earlier, this theorem has technically been defined on trees built from stochastic signals, but since the tree and persistence diagram have a one-to-one relation, the theorem can be used to connect the persistence diagram with signal properties directly.
 
-The first theorems Perez defines in his paper dictates that for stochastic signals, the expectation of the number of points of length greater than epsilon, is a function of the quadratic variation, [X]_t. Since quadratic variation for a continous deterministic signal is 0, this theorem obviously doesn't hold true for deterministic signals, and should give us a reasonable way of differentiating between stochastic signals and determinstically chaotic signals.
+The theorem says that the expected number of persistence points of length greater than epsilon--so basically the points which fall in this green triangle--is directly proportional to the quadratic variation, and inverse squarely proportional to epsilon in the limit of epsilon approaching zero. 
+Since quadratic variation for a continous deterministic signal is known to be 0, this theorem would obviously not hold for deterministic signals, and should give us a reasonable way of differentiating between stochastic signals and determinstically chaotic signals by calculatnig just the quadratic variation.
 
-The second theorem connects the number of up-down crossings of a stochastic signal to the number of points in this green box in the persistence diagram.
+However, this theorem is built for continuous signlas. In reality, the signals we see aroudn us are discrete and not analog. So we can't directly use the theorem. Instead we take the followinwe yg procedure. 
+First, we define a variable K over a range of epsilons where the number of points expected theoretically and observed computationally are nearly equal. By using a linefit, we find a region of eps where this equation holds true -- such as in the figure on the right for brownian motion. 
+Then once we have this region of epsilons, we calculate the slope of this fitted line. For a stochastic signal, this slope should be close to a value of -2. This way we can classify if the signal is stochastic or not.
 
 --
 
@@ -408,6 +423,14 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 ---
 # All Systems Considered
 
+???
+
+For this study, I considered about 12 simulated systems falling in different categories, and some real-world financial + audio signals to test the efficiency of algorithm. These sytems range from canonical diffusions to deterministic chaotic maps/equatons and also stochastic chaos.
+
+In this presentation, I will display results from just 5 of these. 
+
+--
+
 ![:img 70%, 15%, 20%](figs/chaos_timeseries.png)
 
 --
@@ -415,6 +438,12 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 
 ---
 # Example: Ornstein-Uhlenbeck
+
+???
+
+These first example is Ornstein uhlenbeck. OU is a classical diffusion proces - so we expect a classification of stochasticity. Each heatmap corresponds to a different signal to noise ratio. The x-axis is the discretization level of the signal, the y-axis is the length of the signal and the color displays the classification accuracy for monte carlo simulations run for these systems. Across all tested parameters, the accurayc for OU is virtually a 100%. 
+
+--
 
 ![:img 15%, 65%, 5%](figs/ou_process.png)
 
@@ -426,6 +455,12 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 ---
 # Example: Cox-Ingersoll-Ross
 
+???
+
+CIR is anotehr classical stochast proces.s Here as well, Here, across all tested parameters, the accurayc is overall high. At very low discretization of 0.01 or 0.005, we see poor classifcation perfmance. Beyond these, the algorithm accurately classifies the signal type. 
+
+--
+
 ![:img 15%, 65%, 5%](figs/cox_ingersoll_ross_process.png)
 ![:img 30%, 5%, 35%](figs/cox_ingersoll_ross_process_R1_00_accuracy_heatmap_png.png)
 ![:img 30%, 35%, 35%](figs/cox_ingersoll_ross_process_R0_75_accuracy_heatmap_png.png)
@@ -435,6 +470,13 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 ---
 # Example: Linear Congruential Generator
 
+???
+
+Next is the LinearCongruential Generator (LCG)---which is a notoriously difficult deterministic chaotic map. For high and moderate signal to noise ratio, the signals are robustly classified as non-stochastic. Despite their apparent irregular strcuture, their excursion statistics fail to satisfy the inverse square scaling law, reflecting the absence of finite quadratic variation in the continuous–time limit. When high additive noise is introduced as for SNR 15, the system displays sharp transitions from deterministic-like to diffusion-like classification -- leading to the errors.
+Interestingly, for chaotic maps, the accuracy increases as discreizatoin and signal length decrease instead of the other way around.
+
+--
+
 ![:img 15%, 65%, 5%](figs/linear_congruential_generator.png)
 ![:img 30%, 5%, 35%](figs/lcg_SNR60_00_accuracy_heatmap_png.png)
 ![:img 30%, 35%, 35%](figs/lcg_SNR30_00_accuracy_heatmap_png.png)
@@ -443,6 +485,13 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 
 ---
 # Example: Lu Oscillator
+
+???
+
+Next is a deterministic Chaotic system, Its classification is
+reasonably accurate even for low SNRs--granted discretization and signal length are sufficiently large. The second and third plot are for SNR 15 and 5 -- which are both considered very low. 
+
+--
 
 
 ![:img 15%, 65%, 5%](figs/lu_oscillator.png)
@@ -454,6 +503,12 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 ---
 # Example: Stochastic Duffing
 
+???
+
+Finally, let's look at stochastic duffing which has both stochasticity and chaos in it. For high SNRs, the classification is visibly hgh. For low signal to noise ratio, stochastic Duffing system exhibits a near monotonic increase in diffusion classification accuracy as snr improves.
+
+--
+
 ![:img 15%, 65%, 5%](figs/stochastic_duffing.png)
 ![:img 30%, 5%, 35%](figs/stochastic_duffing_R1_00_accuracy_heatmap_png.png)
 ![:img 30%, 35%, 35%](figs/stochastic_duffing_R0_75_accuracy_heatmap_png.png)
@@ -462,6 +517,15 @@ The second theorem connects the number of up-down crossings of a stochastic sign
 
 ---
 # Example: Audio Sounds
+
+???
+I also tested the algorithm on some real world audio sounds. The people on zoom might not hear these, so apologies in advance. 
+The fitst sound is thundrestorm which was rightly identidied as stochastic. The second is a chainsaw, which got classified as stochasatiac as well. 
+Finally, the alarm clock due tp somewhat perfiodic behaviour got classified as non-stochastic. 
+
+That wraps up the chapter on distinguishing stochastic from non stochastic. s
+
+--
 
 &lt;div style="position: relative; height: 500px;"&gt;
 
@@ -515,6 +579,8 @@ function playAudioAndSwap(audioId, imgId) {
 ---
 
 ???
+On to chapter 6 on eeg signal classification for epileptic seizures, 
+While looking for a real-world problem to apply for my bifurcation detection work in chapter 2-3, I had came across the problem of epileptic seizure detection given EEG signals. Let's take a look at this work. 
 
 --
 
@@ -524,11 +590,8 @@ function playAudioAndSwap(audioId, imgId) {
 # Detection of Epileptic Seizures from EEG Signals 
 
 ???
-While looking for another real-world problem to apply for my P-bifurcation work, I came across the problem of epileptic seizure detection given EEG signals. 
 
-In EEG of an epileptic patient, three types of regimes can be found. A normal/interictal phase, a preictal phase occurring right before a seizure and an ictal phase which depicts a seizure. 
-
-Each of these regimes' topology differs from the other, hence there is potential for TDA to be able to classify these signals.
+In EEG of an epileptic patient, three types of regimes can be found. A normal/interictal phase, a preictal phase occurring right before a seizure and an ictal phase which corresponds to a seizure. Each of these regimes' dynamics differs from the other, hence there is potential for topology to be able to classify these signals.
 
 --
 
@@ -563,17 +626,40 @@ Three types of regimes:
 # Topological Machine Learning
 ???
 
-In one fo the earlier videos, you should've been familiarized with persistence diagrams. So for this video, let's start with the idea that you have somedata and you generated your persistence diagram which is in a 2D space. Your next question is: how do I incorporate this data in your ML pipeline? The answer to it is somethign called 'vectorizatoin' where a couple of techniques are used to convert persistence diagrams into a vector of features which can then be used to train your ML classfiier. We'll go over a couple pf tjese techniques in the next few slides.
+I won't go deep into the details of topological machine learning. Just an overview: let's say we have some data--in our case a 1d signal--wihch you can generate a persistence diagram for. This persistence daigram is in a 2D space. Your next question is: how do I incorporate this data in an ML pipeline? The answer to it is somethign called 'vectorizatoin' where a couple of techniques are used to convert persistence diagrams into a vector of features which can then be used to train your ML classfiier. 
+
+Some common vector forms of persistence diagrams are betti vectors, carlsson coordinates, persistence landscapes, template functions and persistence images. 
+
+In this work, I am only using carlsson coordinates, template functions and persistence images. 
+
 
 --
 
+![:img 70%, 15%, 25%](figs/TML_Pipeline0.png)
+--
+
+![:img 80%, 10%, 20%](figs/white_block2.png)
+![:img 70%, 15%, 25%](figs/TML_Pipeline1.png)
+
+--
+
+![:img 80%, 10%, 20%](figs/white_block2.png)
 ![:img 70%, 15%, 25%](figs/TML_Pipeline2.png)
---
-
-![:img 100%, 10%, 25%](figs/white_block1.png)
-![:img 70%, 15%, 25%](figs/TML_Pipeline.png)
 
 ---
+
+???
+So--for this classification problem--we have two types of datasets: single channel datasets where the each 1d signal has been labelled ictal, preictal or interictal. These can come from simulations by using stochastic models such as the jensen-rit or through clinical data. 
+From each 1d signal, you can simply extract topological features and train your ML models. 
+
+The other type of dataset is multivariate--where your number of channels can range from 20 to more than 150. with such a data, we can take two approaches--first where we reduce the dimension to 1 channel and extract features solely from it, or second where we extract features from each channel and data fusion at the feature level to get one feature matrix. In both cases, we'll be able to train ML models for classification. 
+
+A different approach to the problem is to fuse the data at the signal level. This can be done by converting your multivariate timeseries into a higher-order simplicial complex at every timestep--and then extracting features from those simplicial complexes. 
+
+Let's look at the results I got from each of these methods. 
+
+
+--
 
 ![:img 80%, 10%, 7.5%](figs/EEG_Full_Chapter.png)
 
@@ -581,7 +667,10 @@ In one fo the earlier videos, you should've been familiarized with persistence d
 # Single-Channel Simulated EEG: Jansen-Rit Neural Model
 
 ???
-I started my analysis by turning to a numerical model for EEG simulations. The Jansen-Rit neural model is a 6 DOF system of Stochastic DEs used to simulate the interaction between pyramidal neurons and inhibitory interneurons in a brain. The difference of x1 and x2 state variables is said to simulate the behaviour of an EEG signal. Here the variable B is the bifurcation parameter changing which in te (50, 70) interval changes the EEG dynamics. 
+So stage 1 of the project -- single channel simulated EEG signals from jansen rit model. 
+The Jansen-Rit neural model is a 6 DOF system of Stochastic DEs used to simulate the interaction between pyramidal neurons and inhibitory interneurons in a brain. The difference of state variables x1 and x2 is said to simulate the behaviour of an EEG signal. Here the variable B is the bifurcation parameter changing which in the (50, 70) interval changes the EEG dynamics between precital ictal and interictal. 
+
+Featurizing the persistence diagrams from these signals and training classifiers on them resulted in a 100% accuracy with simple models. 
 
 --
 
@@ -608,13 +697,12 @@ I started my analysis by turning to a numerical model for EEG simulations. The J
 # Single-Channel Clinical EEG
 
 ???
-Let's look at results from the major non-TDA and TDA features on our single-channel clinical EEG dataset. The x-axis on the heat map represents the feature, the y-axis represents the machine learning classifier and the color-coded cells represent the test accuracy after removing any results with overfitting. Wherever necessary, overfitting of the model to the training set was removed using K-best feature selection. 
+Next I turned to a clinical dataset of 50 patients with single-channel EEG. I built classifiers with both topology and standed non-topology features used. The x-axis on the heat map represents the feature, the y-axis represents the machine learning classifier and the color-coded cells represent the test accuracy after removing any results with overfitting. 
 
 The major non-TDA features used in literature are permutation entropy, renyi entropy, tsallis entropy and hurst exponents. The maximum accuracy of classification I was able to achieve using these features was 76.7% which rose to about 79% when all of them were combined.
 
-Likewise, the same analysis was conducted using TDA-based features of Persistence images, carlsson coordinates and template functions and with combining all of them. I have covered the mathematical details of each of these features in a separate video sent to the committee so I won't go into those details. 
-
-The maximum accuracy using these was a little over 85%, which is a good accuracy for a 3-class classification problem with real data, traditional ML models, no preprocessing and no hyperparameter tuning.
+Likewise, the same analysis was conducted using TDA-based features.
+The maximum accuracy using these was a little over 85% with all of them combined. These models were built with no signal preprocessing and no hyperparameter tuning.
 
 --
 
@@ -634,11 +722,14 @@ The maximum accuracy using these was a little over 85%, which is a good accuracy
 # Multi-Channel EEG: ML Pipeline
 
 ???
-Next, I tried expanding this analysis to multi-channel clinical EEG data. This is a work in progress. 
+Next, I expanded this analysis to multi-channel clinical EEG data.
 
-With multi-channel EEG data, the problem lies in choosing how to with fuse data from all channels or reduce the dimension. 
+With multi-channel EEG data, the problem lies in choosing how to combine data from all channels or how to reduce the dimensionality. 
 
-One possible solution is with fusing features from all signals together. In this, we run into the potential of corrupting the extracted features since in an interval of EEG marked as seizure all channels may or may not be depicting a seizure dynamics. Another possible solution is to use channel reduction techniques to pick seizure channels, but that nethod has the potential to heavily reduce the information available to us. 
+I tried both approaches: first by reducing the dimension then by fusing data at the feature level. 
+
+Let's look at the first one. 
+
 
 --
 ![:img 90%, 5%, 25%](figs/ML_Pipeline.png)
@@ -649,6 +740,23 @@ One possible solution is with fusing features from all signals together. In this
 
 ---
 # Methods and Results
+
+???
+
+Epileptic activity is strongly linked to changes in rhythmic brain oscillations--so along with the raw EEG data, I also extracted power timeseries across standard frequency bands---alpha, beta, low gamma, high gamma, and delta. 
+
+Next, I reduce dimensionality using multiple techniques like PCA or t-SNE to keep the most informative structure. Then I extracted features—both topological features, and standard entropy features for benchmarking.
+
+Finally, I fed these into classical machine learning and deep learning models to perform the three-class classification.
+
+The table lists the top 7 classification pipelines. The highest accuracy of 80% was achieved with a combination of low gamma frequency bands combined with factor analysis for dimensionality reduction with carlsson coordinates as teh features usig a convolutional network. However the accuracy with the simple classifier of logistic regression follows pretty closelt with the same featurization technique. 
+
+The other top performers also use topological features, primarily carlsson coordinates, instead of the standard entropy features.
+
+
+&lt;Seizures often show increased synchronization in lower frequencies like delta and theta, while abnormalities in beta and gamma can reflect disrupted cortical activity. By separating the signal into these bands, we capture physiologically meaningful patterns rather than working with noisy raw data.&gt;
+
+--
 
 ![:img 52.5%, 22.5%, 17.5%](figs/ML_Pipeline_detail.png)
 
@@ -675,6 +783,18 @@ table {
 ---
 # Accuracy Comparison
 
+???
+
+Performance varied across frequency bands. The delta band achieved the highest mean balanced accuracy (50.20\%), indicating that low-frequency oscillations contain useful information for seizure classification. However, the best single-performing configuration was obtained using the low gamma band (30-50 Hz), suggesting that higher frequency activity may capture seizure-related dynamics under certain model configurations.
+
+While deep learning models achieved slightly higher maximum performance, the overall performance distributions of the two model classes were similar. This result suggests that well-constructed topological feature representations can allow relatively simple models to achieve performance comparable to more complex neural network architectures.
+
+Dimensionality reduction played a critical role in classification performance. Nonlinear manifold learning techniques such as t-SNE achieved the highest mean performance across configurations, while Factor Analysis produced the best single-performing pipeline when combined with deep learning models. Linear methods such as PCA and LDA also provided stable performance across configurations.
+
+Finally, mong the evaluated topological features, polynomial based template functions achieved the highest mean performance, while Carlsson coordinates achieved the best individual result. Overall, topology-based features consistently outperformed the entropy-based baseline features, indicating that persistence can capture structural properties of EEG signals which are relevant for seizure classification.
+
+--
+
 ![:img 40%, 5%, 20%](figs/band_performance.png)
 --
 
@@ -690,10 +810,23 @@ table {
 ---
 # Runtime Comparison
 
+???
+
+Alongwwith accuracies, the computational time for each feature type was computed to empirically estimate the computational complexity---for different signal lengths. Overall topological features were less computationally expensive compared to traditional entropy-based features---esp carlsson coordinates which have a sublinear runtime. 
+
+--
+
 ![:img 80%, 10%, 30%](figs/feature_timing_benchmark.png)
 
 ---
 # Multi-Channel EEG: ML Pipeline Feature Fusion
+
+???
+Moving onto the second pipelnie where we combine data from all channels by fusing the features extracted from all of them into one big feature matrix.
+
+A similar study was run for this comparing results by various features. Howver, the higher dimensionality created a lot of overfitting issues and led to a much smaller accuracy of about 60% compared to the dimensionality reductino pipeline. 
+
+--
 
 ![:img 80%, 10%, 20%](figs/ML_Pipeline2.png)
 
@@ -708,6 +841,13 @@ table {
 ---
 # Multi-Channel EEG: Co-Fluctuation Simplicial Complex
 
+???
+Finally, the thrid pipelien where we can first combine the multivariate timeseries into a simplicial complex and then extract features out of it. 
+
+First, we normalize all the data. Then we convert each channgel into a separate node and give it a weight equal to its signed fluctuation computed from this formula. Likewise, edges and faces between two and three nodes resp. are given weights computed from this co-fluctuation formula as well. 
+
+--
+
 ![:img 50%, 30%, 20%](figs/time_series_to_simComp.png)
 &lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;
 
@@ -721,6 +861,14 @@ table {
 
 ---
 # Metrics from Persistence of Simp. Complexes
+
+???
+
+Once you do this for a full multicariate timeseries, you get a time-varying simplicial complex. Each of these can be filtered to get persistence diagrams from which topological metrics can be computed. 
+
+For this, I am computing the time-varying betti numbers, total persistence, persistence entropy, hyper coherence and some other metrics. 
+
+--
 
 ![:img 45%, 5%, 15%](figs/simp_complex_metrics.png)
 
@@ -741,6 +889,20 @@ multivariate time series. Nature Physics, January 2023.]
 
 ---
 # Classification Metrics
+
+???
+
+On this slide, I’m showing the classification performance of the 1D topological metrics we extracted from multivariate EEG signals.
+
+On the left, you can see an example topological metric time series computed from the time-varying simplicial complex for particualr patient. The shaded region corresponds to the seizure segment. What we observe is that the metric values increase and become more variable during the ictal period. We apply a simple thresholding approach using the median value of the metric to classify each time point.
+
+On the right is the ReceiverOperatingCurve curve for this same metric. This shows the trade-off between true positive rate and false positive rate across thresholds. The red point corresponds to the median threshold, which I used for reporting accuracy. The area under the curve, or AUC, gives us a threshold-independent measure of performance.
+
+At the bottom, the table summarizes results across all the topological metrics. The key takeaway is that Coherence Transition performs best, with an AUC of about 0.91 and accuracy with median threshold at around 0.77. Several other metrics—like Total Persistence and Hyper Complexity—also show reasonable discriminative power, while others are closer to random chance.
+
+Overall, this suggests that certain topological summaries of EEG dynamics carry strong information for distinguishing ictal from non-ictal states, even with a simple per-time-step classification strategy.
+
+--
 
 ![:img 75%, 15%, 17.5%](figs/eeg_roc_auc.png)
 
@@ -765,7 +927,8 @@ multivariate time series. Nature Physics, January 2023.]
 
 ???
 
-Finally, in Chapter 6, I present a novel approach for detecting basins of attraction in dynamical systems by utilizing hitting probabilities derived from Markov chain modeling of the system’s state space.
+That wraps up the chapter on EEG analysis. 
+Finally, in Chapter 7, I investigate a topological approach for detecting basins of attraction in dynamical systems by utilizing hitting probabilities derived from Markov chain models of the system’s state space.
 
 --
 
@@ -776,16 +939,11 @@ Finally, in Chapter 6, I present a novel approach for detecting basins of attrac
 
 ???
 
-The analysis of basins of attraction is fundamental in understanding the long-term behavior of
-nonlinear dynamical systems. These basins represent regions in the state space where trajectories
-converge to stable equilibria or periodic orbits and have applications in many fields.
+The analysis of basins of attraction is fundamental in understanding the long-term behavior of nonlinear dynamical systems. These basins represent regions in the state space where trajectories converge to stable equilibria or periodic orbits. This analysis has applications in many fields.
 
-It's not very possible to do this analysis theoretically, and only numerical methods are possible. One commonly used approach is of discretizing the phase space and computing trajectories from each grid point, however such a method is very computational intensive and very sensitive to the discretization level.
+It's not always possible to do this analysis theoretically, and only numerical methods are feasible. One commonly used approach is of discretizing the phase space and computing trajectories from each grid point, However such a method can both very computationally intensive and sensitive to the discretization level.
 
 --
-
-.footnote[George Datseris, Alexandre Wagemakers; Effortless estimation of basins of attraction. Chaos 1 February 2022; 32 (2): 023104. https://doi.org/10.1063/5.0076568]
-
 
 ![:img 35%, 15%, 20%](figs/duffing_boa.png)
 
@@ -794,6 +952,24 @@ It's not very possible to do this analysis theoretically, and only numerical met
 ![:img 35%, 55%, 20%](figs/boa_deterministic.png)
 ---
 # State of the Art
+
+???
+
+The current state of the art has some limitations -- it requires maintaining the full trajectory in memory which the basin is searched. These methods also use grid discretization in a way where trajectories are snapped to the grid point. This can quicly lead to acucmulation of nuerical errors and the trajectory collapsing in systems with chaotic dynamics. 
+The sequential nature of these methods also makes parallization difficult. Finally, the methods whcih do follow a markov chain conversion instead of a simple grid -- have relied on absoroption probabilities instead of hitting probabilities. 
+Absorption probs can be very sensitive to noise and parameter changes rendering the anlaysis not very reliable.
+
+
+--
+
+.footnote[
+&lt;div style="font-size: 0.6em; line-height: 1.1;"&gt;
+(1) George Datseris, Alexandre Wagemakers; Effortless estimation of basins of attraction. Chaos 1 February 2022; 32 (2): 023104. https://doi.org/10.1063/5.0076568
+
+(2) N. Neumann, S. Goldschmidt, and J. Wallaschek, “On the application of set-oriented numerical methods in the analysis of railway vehicle dynamics,” PAMM, vol. 4, p. 578–579, Dec. 2004.
+&lt;/div&gt;
+]
+
 
 ![:img 45%, 5%, 20%](figs/sota_boa.png)
 
@@ -808,24 +984,27 @@ It's not very possible to do this analysis theoretically, and only numerical met
 ???
 To address these challenges, I employ a Markov chain-based model of the discretized state space, following the set-oriented numerical methodology described by Neumann et al, which turns this deterministic problem to a stochastic one, allowing me to use measures used for markov chains.
 
-For this conversion, the state space is partitioned into boxes each represented by a state in the markov chain. Then, one-step trajectories are generated from randomly selected initial conditions in each box. The proportions of these trajectories going from one node to another represents the transition probabilities. These two things completely defining our markvo chain representing the underlying deterministic system.
-
-While prior studies have focused on absorption probabilities to identify attractor basins, these can be sensitive to noise and parameter changes.
-Therefore, I instead compute hitting probabilities, offering greater robustness and stability, thus
-allowing for more reliable analysis.
+For this conversion, the state space is partitioned into boxes. Each of these boxes are represented by a state in the markov chain. Then, one-step trajectories are generated from uniformaly randomly selected initial conditions inside each box. The proportions of these trajectories going from one node to another represents the transition probabilities. Having these two things completely defines a markvo chain representing the underlying deterministic system.
 
 --
 
-.footnote[N. Neumann, S. Goldschmidt, and J. Wallaschek, “On the application of set-oriented numerical methods in the analysis of railway vehicle dynamics,” PAMM, vol. 4, p. 578–579, Dec. 2004.]
+.footnote[
+N. Neumann, S. Goldschmidt, and J. Wallaschek, “On the application of set-oriented numerical methods in the analysis of railway vehicle dynamics,” PAMM, vol. 4, p. 578–579, Dec. 2004.
+&lt;/div&gt;
+]
 
-![:img 55%, 15%, 20%](figs/markov_chain.png)
+![:img 55%, 25%, 20%](figs/markov_chain.png)
 
 ---
 # Types of Graphs
 
 ???
 
-The hitting probability matrix for this markov chain can be seen on the left. In TDA, it is easy to compute rips or point cloud persistence given a distance matrix, so my first instint was to use a distance metric defined using hitting probabilities by Boyd et al instead of using this hitting probability matrix directly. However, by defnition of distance and as you can see in this plot, the distance matrix is symmetric. But the problem of finding basins of attraction is inherently asymmetric so this distance metric loses a lot of useful information and won't be able to separate basins from attractors. Hence, I want to shift my focus to TDA methods defined on directed asymmetric graphps.
+From this conversion, we can get multiple types of graphs. This slide shows the phase space for a vanderpol oscillator with the markov chain representaiton of it. 
+
+Three types of graphs which can be computed from these are fiven in the bototm row. The first is ofcourse the markov chain's transiion matrix itself. The second is the hirring probability matrix-- which represents the likelihood that a particulat state is reached given an initla state. Both of these matrices are asymmetric graphs. To have a symmetic version, we can also transform this hitting probabilty matrix into a symmetric hitting probabililites distanfe matrix which was defined by Boyd et al in 2021. 
+
+In this work, I explore the qualititative differences in the persistence diagrams from each of these three types of matrices.  
 
 --
 
@@ -843,11 +1022,9 @@ The hitting probability matrix for this markov chain can be seen on the left. In
 
 ???
 
-There are two primary persistences defined on directed weighted graphs: dowker persistence and Flag persistence. Recently, a method of computing persistence on path homology of graphs has been introduced, referred to as persistent path homology.
+Since the first two types of graphs are asymmetric, I decided to use homoogy theories developed for assymmtric graphs. There are four popoulat types: dowker, flag, persistent path and magnitude homology.
 
-This figure shows each of their persistence diagrams against two commmon directed graphs. I won't go into the detials of how each is computed, but as you can see, the method of persistent path homology has a richer persistence diagram compared to the other two methods. PPH is also known to be more sensitive to perturbation and is computationally cheaper than the other two methods. 
-
-In the future, I plan to investigate all three of these persistences with my focus on PPH, to see if the persistence diagrams of the markov chains are capable of separating basins of attraction from their corresponding attractors.
+This figure shows each of their persistence diagrams against a commmon directed graph. Each method captures different types of topological features and hence returns a different persistence diagram.
 
 --
 
@@ -856,6 +1033,16 @@ In the future, I plan to investigate all three of these persistences with my foc
 ---
 # Asymmetric Graph Homology: Flag
 
+???
+
+The basic method of computing the filtration is the same as what we saw in the earlier slides. The building blocks are different though. 
+
+E.g. in flag persistence, a 1-simplex is a directed edge not an undirected edge. a 2-simplex is an open cycle nto a closed cycle. and the same goes for a 3-simplex. 
+
+So e.g. if you have a closed cycle as in the bottom image, you get a loop. But if the cycle is not closed, you get a face or a 2-simplex. 
+
+--
+
 ![:img 45%, 25%, 20%](figs/flag_complex.png)
 
 .footnote[D. Luetgehetmann, D. Govc, J. Smith, and R. Levi, “Computing persistent homology of directed flag complexes,” arXiv, 2019.]
@@ -863,29 +1050,56 @@ In the future, I plan to investigate all three of these persistences with my foc
 ---
 # Asymmetric Graph Homology: Dowker
 
+???
+
+Dowker complexes extract topology from binary relations between two matrices, I won' go into those details here. But once you have the graph, it gets convverted into the lawvere or the shortest path matrix. which is then filtered to get a persistence diagram simply.
+
+--
+
 ![:img 45%, 25%, 20%](figs/dowker_complex.png)
 .footnote[S. Chowdhury and F. Mémoli, “A functorial dowker theorem and persistent homology of asymmetric networks,” arXiv, 2018]
 
 ---
 # Asymmetric Graph Homology: PPH and MH
 
-.footnote[(1) Samir Chowdhury and Facundo Mémoli. 2018. Persistent path homology of directed networks. In Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA '18). Society for Industrial and Applied Mathematics, USA, 1152–1169. (2) T. Leinster and M. Shulman, “Magnitude homology of enriched categories and metric
-spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021.
+???
+
+Persistent path and magnitude homologies are built over paths. Given a directed graph, a `\(p\)`-path is defined as a sequence of distinct vertices such that an edge exists between each pair of consecutive vertices.
+
+So for this 6-node cycle graph. At a path length of 0, we oonly have 6 nodes and no edges. This gives an H0 count of 6 and H1 count of 0. Then at a path length of 1, we get a loop. 
+At a path length of two, edges are added between nodes which can be connected with a distance of 2. 
+And then, at a path length of three, edges are added between nodes which are a distance of 3 away. This leads to the loop filling in and the H1 count changes to 0. 
+
+
+magnitude homology follows a similar procedure -- but first the graph is converted into its lawvere metric. Then since the metric has many unique path lengths, it is converted into multiple matrices with thresgoldign. 
+And then the thresholded matrices are filtered similar to how we did it for persistent path.
+This then leads to a set of persistence diagrams instead of just 1. 
+
+--
+
+.footnote[
+&lt;div style="font-size: 0.6em; line-height: 1.1;"&gt;
+(1) Samir Chowdhury and Facundo Mémoli. 2018. Persistent path homology of directed networks. In Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA '18). Society for Industrial and Applied Mathematics, USA, 1152–1169. 
+(2) T. Leinster and M. Shulman, “Magnitude homology of enriched categories and metric spaces,” Algebraic &amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021.
+&lt;/div&gt;
 ]
 
-![:img 45%, 25%, 30%](figs/persistent_path.png)
-
+![:img 67.5%, 15%, 17.5%](figs/pph_mh1.png)
 --
-![:img 15%, 35%, 45%](figs/cycle_filtration_delta_1.png)
-
+![:img 67.5%, 15%, 17.5%](figs/pph_mh2.png)
 --
-![:img 15%, 35%, 45%](figs/cycle_filtration_delta_2.png)
---
-![:img 15%, 35%, 45%](figs/cycle_filtration_delta_3.png)
-
-
+![:img 67.5%, 15%, 17.5%](figs/pph_mh3.png)
 ---
 # All Systems Considered
+
+???
+That wraps up a soft intro all the different asymmetric homologies. 
+
+For the study, I looked at five different systems. A fixed point in the first panel, a stable spiral shown in the second panel, a fixed radius limit cycle shown in the third panel, the duffing oscillator with two attractors shown in the fourth panel, and the vanderpol oscillator with a strong limit cycle shown in the last panel.
+
+Of these, I will display results comparing the fixed point and the vanderpol systems only. 
+
+--
 
 ![:img 20%, 10%, 20%](figs/fixed_point.gif)
 ![:img 20%, 40%, 20%](figs/spiral.gif)
@@ -896,6 +1110,16 @@ spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021
 
 ---
 # Transition Matrix: Fixed Point vs Vanderpol
+
+???
+
+So, the first row shows the results for the fixed point and second row for vanderpol. The first column shows dowjer persistence, second shows flag persistence and the third one shows PPH. Results from magnitude homology were trivial throughout the study -- hence they;ve been excluded throughhout this section. 
+
+For the transition matrix---dowker persistence for both fixed point and vanderpol does not show any qualitiative differencs. 
+Flag and persistent path on the other hand do show some qualititative differnces. Flag persistence has a much higher loop count for a fixed point compared to vanderpol, while persistent path has the opposite behavriou 
+
+
+--
 
 ![:img 20%, 10%, 20%](figs/case1_tm_dowker.png)
 ![:img 20%, 40%, 20%](figs/case1_tm_flag.png)
@@ -908,6 +1132,14 @@ spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021
 ---
 # Hitting Probability Matrix: Fixed Point vs Vanderpol
 
+???
+
+For the hitting probability matrix---again dowker persistence for both fixed point and vanderpol does not show any qualitiative differencs. This time, persistent path too does not show much qualititave difference.
+
+Flag persistence on the other hand records a much higher loop count for vanderpol this time compared to the fixed point. 
+
+--
+
 ![:img 20%, 10%, 20%](figs/case1_hpm_dowker.png)
 ![:img 20%, 40%, 20%](figs/case1_hpm_flag.png)
 ![:img 20%, 70%, 20%](figs/case1_hpm_pph.png)
@@ -918,6 +1150,12 @@ spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021
 
 ---
 # Hitting Probability Distance: Fixed Point vs Vanderpol
+
+???
+
+For the hitting probability distance matrix---flag persistence doesnot show any qualititavie differences. While dowker and persistent path have a nearly trivial persistence for the fixed point vs a non-trivial homolgoy for vanderpol oscillator. 
+
+--
 
 ![:img 20%, 10%, 20%](figs/case1_hpd_dowker.png)
 ![:img 20%, 40%, 20%](figs/case1_hpd_flag.png)
@@ -930,6 +1168,14 @@ spaces,” Algebraic amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021
 
 ---
 # Comparison
+
+???
+
+This slide summarizes the observed persistent homology features for the three graph constructions for all systems considered. The cells highlighted in green correspond to the entries where the observed persistent homology behaviour differs qualtitatively between systems with fixed point
+attractors and those with limit cycles attractors. Such changes suggest that these particular constructions
+and homologies are sensitive to differences in the underlying phase space organization---consequently they may be useful for distinguishing between basins associated with fixed points and those associated with limit cycles. 
+
+--
 
 &lt;br&gt;&lt;/br&gt;
 
@@ -1011,16 +1257,50 @@ th {
 ---
 # Future: Generators to Separate Attractor from Basin
 
+???
+
+While these observations are currently empirical and based on the specific examples studied here, they suggest that certain combinations of graph construction and homology computation may encode information about the type of attractor present. However, just having a persistence diagram is not enough to separate the attractor from the basin. Further work, particularly involving the computation of persistence generators, will be required to determine whether these signals can reliably localize basin boundaries or identify the attractor itself.
+
+Unfortunayely, a central difficulty is that such generators are generally not unique. Even a single long lived homology class may have many valid representatives. 
+If persistent generators can be computed and stably interpreted for these directed filtrations, then they may provide a mechanism for differentiating between the topology of basins of attraction and the topology of the attractors themselves.
+
+
+--
+
 ![:img 25%, 10%, 30%](figs/vander.png)
+&lt;div style="position: absolute; left:15%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Phase Space&lt;/b&gt;
+&lt;/div&gt;
+
 ![:img 25%, 40%, 30%](figs/vander_markov.png)
+
+&lt;div style="position: absolute; left:46%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Markov Chain&lt;/b&gt;
+&lt;/div&gt;
 
 ![:img 25%, 70%, 30%](figs/generators.png)
 
+&lt;div style="position: absolute; left:72%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Dowker Generator&lt;/b&gt;
+&lt;/div&gt;
+
+
 ---
+???
+
+On that note, I conclude tehe technical part of my defense. The rest of the chapters can be read in the dissertation once its approved and available on proquest. 
+
+--
+
 ![:img 70%, 15%, 7%](figs/full_picture.png)
 
 ---
 # Acknowledgements
+
+???
+I would like to acknowledge all the intelligent people from various places who I ended up collaborating with over teh last 4 year. 
+
+--
 
 ![:img 95%, 2.5%, 25%](figs/all_people.png)
 
@@ -1035,9 +1315,7 @@ th {
 
 ???
 
-Thank you! The software products of my research are included in this python package called teaspoon which my researhc group delevelops. This slide also lists all the papers my current reseach has concluded into, and the papers we have planned for future granted we get positive results from my proposed directions.
-
-This concludes my presentation. Any questions?
+These productive collaborations led me to have a number of published papers and preprints. An NSF funded computational science fellowship, as well as the Fitch Beach award for outstanding doctoral research in mechanical engineering. 
 
 --
 
@@ -1048,6 +1326,10 @@ This concludes my presentation. Any questions?
 
 ???
 
+This concludes my presentation and hopefully the journey at MSU. Granted I pass this defense, I will be joining the maths department at UMich as a reserach track faculty to establish a new intelligent algorithms core. 
+
+Thank you for listening. 
+
 --
 
 - Research-Track Faculty position at MCAIM-UMich
@@ -1057,6 +1339,20 @@ This concludes my presentation. Any questions?
 
 ![:img 25%, 65%, 30%](figs/katniss.gif)
 
+---
+
+class: center, middle
+
+# Thank You!
+
+&lt;div class="rotating-text"&gt;
+  &lt;span&gt;Questions?&lt;/span&gt;
+  &lt;span&gt;¿Preguntas?&lt;/span&gt;
+  &lt;span&gt;Fragen?&lt;/span&gt;
+  &lt;span&gt;質問はありますか？&lt;/span&gt;
+  &lt;span&gt;سوالات؟&lt;/span&gt; &lt;!-- Urdu --&gt;
+  &lt;span&gt;أسئلة؟&lt;/span&gt; &lt;!-- Arabic --&gt;
+&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="js/remark-latest.min.js"></script>

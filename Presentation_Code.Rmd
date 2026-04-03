@@ -111,24 +111,25 @@ Objective: Leverage stochastic systems theory and topological data analysis for 
 
 ???
 
-In my comprehensive exam I had proposed some objetives which I planned to achieve. Chapters 1, 3, 5 and 7 were in progress then. Since then, I have been able to complete all of the targets I had set earlier. 
+In my comprehensive exam, I outlined several objectives I planned to achieve—at that time, Chapters 1, 3, 5, and 7 were still in progress. Since then, I’ve completed all of those targets.
 
-So let's take a look over what the disseration entails.
-A signal from a dynamical system which exhibits no clear pattern may be stochastic or deterministically chaotic. It is important to be able to determine this so that the right tools are used for analysing the system.
-For stochastic systems, we are typically concerned with the probability distributions while for deterministic systems--the concern is with basins and attractors. 
-So, Chapter 1 of my thesis is focused on a novel technique for identifying whether a discrete time series is from a stochastic or non-stochastic system. Chapter 8 is an additional algorithm for robustly computing the level-crossings in a discrete signal -- which is another handy tool for discrete signal processing.
+Let me briefly walk through what the dissertation covers.
 
-So once it's been decided that the system is stochastic, we need to determine the the underlying distribution of the system. So in Chapters 2 and 3, I propose topology driven methods for density estimation and detection of changepoints/bifurcations in stochastic systems. 
+We start with a fundamental question: given a signal from a dynamical system with no clear pattern, is it stochastic or deterministically chaotic? This distinction is important because it determines the appropriate analysis tools. For stochastic systems, we focus on probability distributions, whereas for deterministic systems, the focus is on basins of attraction and attractors.
 
-Then in Chapters 4 and 5, I explore some applications of stochastic bifurcations in real-world systems such as modelling of flutter instability in aerofoils, and modelling of epidemics with compartmental models. 
+So, Chapter 1 introduces a novel method for identifying whether a discrete time series arises from a stochastic or non-stochastic system. Chapter 8 presents an additional algorithm for robustly computing level crossings in discrete signals---which can be useful for the computations in the chapter 1 algorithm.
 
-In Chapter 6, I use topological machine learning and simplicial complex based methods to detect bifurcations in EEG systems specifically for the case of epileptic seizure classification. 
+Then, once a system is identified as stochastic, the next step is to characterize its underlying distribution. In Chapters 2 and 3, I develop topology-driven methods for estimation of a kernel density and for detecting changepoints or bifurcations given stochastic signals.
 
-Finally, in Chapter 7 I shift my focus to deterministic systems, and approach the problem of distinguising basins of attraction from attractors using a markov chain and topology approach.
+Then, in Chapters 4 and 5 I explore applications of stochastic bifurcations in real-world systems, including aeroelastic flutter in airfoils and epidemic modeling using compartmental systems.
 
-Overall, this thesis is aimed at contributing to advancing the applications of topology in signal processing and dynamical systems. 
+Then, In Chapter 6, I apply topological machine learning and simplicial complex–based methods to detect bifurcations in EEG signals, with a focus on epileptic seizure classification.
 
-Due to time constraints, today I will just be focusing on chapter 1, chapter 6 and chap 7. 
+Finally, Chapter 7 shifts to deterministic systems, where I study the distinction between basins of attraction and attractors using a Markov chain and topological framework.
+
+Overall, this thesis aims to advance the use of topology in signal processing and dynamical systems.
+
+Due to time constraints, I will focus today on Chapters 1, 6, and 7. For the other chapters, I’ve shared short overview videos with the committee which cover the methods and results in more detail.
 
 --
 
@@ -223,7 +224,7 @@ Encoded on **Persistence Diagrams** as (b, d)
 
 Let's look at an example of how to construct a PD given a simplicial complex. The left side, shows the building blocks of a simplicial complex - 0 for node, 1 for edge, 2 for triangle/face and 3 for a tetrahedron. During the filtration, connected components are represented as H0 and loops are repressented as H1. 
 
-So for the example simplicaial complex in the middle panel--we can vary the filtration threshold, compute the 0 and 1 homology groups, and record them on the persistence diagram displated in the right most panel. 
+So for the example simplicaial complex in the middle panel--we can vary the filtration threshold, compute the 0 and 1 homology groups, and record them on the persistence diagram displated in the right most panel. Note that the weights assigned to simplices respect a closure condition: if a face is included, the corresponding edges will be too, and if an edge is included the correspdoning nodes will be too. In practice this means that the weight of any face (e.g., a triangle) would be greater than or equal to the weights of its constituent edges, and similarly, the weight of an edge is greater than or equal to the weights of its vertices. This ensures the filtration is well-defined and consistent with the definition of a simplicial complex.
 
 So at a filtration value of 1, we see all nodes and three edges connecting four of those. At filtration value of 2, the other node combines with the rest marking the death of 4. ON the otehr hand, a loop is born due to these nodes connecting with each other. At filtration value of 4, another loop is born with the addition of this new edge. At filtration of 8, a face is added which kills the second loop while another is born. At filtration of 9, the addition of the last face causes that loop to die. Beyond this filtration, no death occurs and this connected component along with the loop always persist. 
 
@@ -315,7 +316,6 @@ The limitations include having to generate random surrogates which can be comput
 --
 
 ![:img 72.5%, 15%, 20%](figs/chaos_sota.png)
-
 
 ---
 # Function to Tree
@@ -515,42 +515,78 @@ Finally, let's look at stochastic duffing which has both stochasticity and chaos
 .footnote[R = deterministic to stochastic ratio]
 
 ---
-# Example: Audio Sounds
+# Example: Audio Sounds (ESC-50 Dataset)
 
 ???
-I also tested the algorithm on some real world audio sounds. The people on zoom might not hear these, so apologies in advance. 
-The fitst sound is thundrestorm which was rightly identidied as stochastic. The second is a chainsaw, which got classified as stochasatiac as well. 
-Finally, the alarm clock due tp somewhat perfiodic behaviour got classified as non-stochastic. 
 
-That wraps up the chapter on distinguishing stochastic from non stochastic. s
+Finally, I tested the algorithm on real-world audio from the ESC-50 dataset, which contains 2000 environmental recordings spanning animal sounds, natural soundscapes, and urban noises.
+
+Since the dataset is not labeled in terms of stochastic vs. deterministic behavior, there is no ground truth available. So rather than evaluating accuracy, this experiment serves as a qualitative sanity check based on known signal characteristics.
 
 --
 
-<div style="position: relative; height: 500px;">
+<br></br>
 
-  <img id="img1"
-       src="figs/thunderstorm_real.jpg"
+| Animals | Natural soundscapes & water sounds | Human, non-speech sounds | Interior/domestic sounds | Exterior/urban noises |
+| :--- | :--- | :--- | :--- | :--- |
+| Dog | Rain | Crying baby | Door knock | Helicopter |
+| Rooster | Sea waves | Sneezing | Mouse click | Chainsaw |
+| Pig | Crackling fire | Clapping | Keyboard typing | Siren |
+| Cow | Crickets | Breathing | Door, wood creaks | Car horn |
+| Frog | Chirping birds | Coughing | Can opening | Engine |
+| Cat | Water drops | Footsteps | Washing machine | Train |
+| Hen | Wind | Laughing | Vacuum cleaner | Church bells |
+| Insects (flying) | Pouring water | Brushing teeth | Clock alarm | Airplane |
+| Sheep | Toilet flush | Snoring | Clock tick | Fireworks |
+| Crow | Thunderstorm | Drinking, sipping | Glass breaking | Hand saw |
+
+---
+# Example: Audio Sounds (ESC-50 Dataset)
+
+???
+Let's see three specific examples. Um, The people on zoom might not hear these, so apologies in advance. 
+The first, a thunderstorm signal—dominated by broadband, irregular fluctuations—is classified as diffusive, which aligns with our expectation of stochastic structure. 
+Next--a chainsaw signal. This was also classified as diffusive, likely due to its noisy, high-frequency components despite some underlying periodicity.
+
+In contrast, an alarm clock signal, which exhibits strong periodic and structured patterns, is classified as non-diffusive.
+
+Overall, these examples suggest that the method is capturing meaningful distinctions in signal structure, even in the absence of explicit labels.
+
+That wraps up the chapter on distinguishing stochastic from non stochastic. The preprint can be found on the link given, and the paper is under review at Chaos. 
+
+--
+
+<div style="text-align:center;">
+
+  <!-- Images (click to flip/play audio) -->
+  <img id="img1" src="figs/thunderstorm_real.jpg"
        data-default="figs/thunderstorm_real.jpg"
        data-alt="figs/thunderstorm.png"
-       style="position:absolute; left:0%; top:10%; width:30%; cursor:pointer;"
+       style="width:30%; cursor:pointer; margin-right:1%;"
        onclick="playAudioAndSwap('audio1','img1')">
 
-  <img id="img2"
-       src="figs/chainsaw_real.jpg"
+  <img id="img2" src="figs/chainsaw_real.jpg"
        data-default="figs/chainsaw_real.jpg"
        data-alt="figs/chainsaw.png"
-       style="position:absolute; left:35%; top:10%; width:30%; cursor:pointer;"
+       style="width:30%; cursor:pointer; margin-right:1%;"
        onclick="playAudioAndSwap('audio2','img2')">
 
-  <img id="img3"
-       src="figs/clock_alarm_real.png"
+  <img id="img3" src="figs/clock_alarm_real.png"
        data-default="figs/clock_alarm_real.png"
        data-alt="figs/clock_alarm.png"
-       style="position:absolute; left:70%; top:10%; width:30%; cursor:pointer;"
+       style="width:30%; cursor:pointer;"
        onclick="playAudioAndSwap('audio3','img3')">
 
 </div>
 
+--
+
+<!-- Box appears on next click using fragment -->
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph2.pv1.fragment[
+Preprint available at https://arxiv.org/abs/2601.06009 and under review at Chaos.
+]
+
+<!-- Audio elements -->
 <audio id="audio1" src="figs/thunderstorm.wav"></audio>
 <audio id="audio2" src="figs/chainsaw.wav"></audio>
 <audio id="audio3" src="figs/clock_alarm.wav"></audio>
@@ -560,20 +596,20 @@ function playAudioAndSwap(audioId, imgId) {
   const audio = document.getElementById(audioId);
   const img = document.getElementById(imgId);
 
-  // swap immediately on click
+  // Swap to alternate image
   img.src = img.dataset.alt;
 
-  // restart and play audio
+  // Restart and play audio
   audio.currentTime = 0;
   audio.play();
 
-  // when audio ends, keep alt image OR switch back
+  // Swap back to default when audio ends
+  audio.onended = null;
   audio.onended = function() {
-    img.src = img.dataset.alt;
+    img.src = img.dataset.default;
   };
 }
 </script>
-
 
 ---
 
@@ -590,7 +626,7 @@ While looking for a real-world problem to apply for my bifurcation detection wor
 
 ???
 
-In EEG of an epileptic patient, three types of regimes can be found. A normal/interictal phase, a preictal phase occurring right before a seizure and an ictal phase which corresponds to a seizure. Each of these regimes' dynamics differs from the other, hence there is potential for topology to be able to classify these signals.
+In EEG of an epileptic patient, three types of regimes can be found. A normal/interictal phase, a preictal phase occurring right before a seizure and an ictal phase which corresponds to a seizure. Each of these regimes' dynamics differs from the other, hence there is potential for topological machine learning to be able to classify these signals.
 
 --
 
@@ -625,11 +661,16 @@ Three types of regimes:
 # Topological Machine Learning
 ???
 
-I won't go deep into the details of topological machine learning. Just an overview: let's say we have some data--in our case a 1d signal--wihch you can generate a persistence diagram for. This persistence daigram is in a 2D space. Your next question is: how do I incorporate this data in an ML pipeline? The answer to it is somethign called 'vectorizatoin' where a couple of techniques are used to convert persistence diagrams into a vector of features which can then be used to train your ML classfiier. 
+I won’t go into the full details of topological machine learning here—I’ve shared a short video with the committee that covers the methodology more thoroughly, so I’ll just give a quick overview.
 
-Some common vector forms of persistence diagrams are betti vectors, carlsson coordinates, persistence landscapes, template functions and persistence images. 
+Starting with any data—in this case, a 1D signal—we can compute its persistence diagram, which lives in a 2D space. The next question is: how do we incorporate this into a machine learning pipeline?
 
-In this work, I am only using carlsson coordinates, template functions and persistence images. 
+The key step is vectorization: we transform the persistence diagram into a finite-dimensional feature vector that can be used by standard ML models.
+
+There are several ways to do this, including Betti vectors, Carlsson coordinates, persistence landscapes, template functions, and persistence images.
+
+In this work, I will just rely on Carlsson coordinates, template functions, and persistence images.
+
 
 
 --
@@ -847,14 +888,14 @@ First, we normalize all the data. Then we convert each channgel into a separate 
 
 --
 
-![:img 50%, 30%, 20%](figs/time_series_to_simComp.png)
-<br></br><br></br><br></br><br></br>
+![:img 45%, 27.5%, 20%](figs/time_series_to_simComp.png)
+<br></br><br></br><br></br>
 
 - Normalization: $z_i(t) = \frac{x_i(t) - \mu_t[x_i]}{\sigma_t[x_i]}$
 
-- Co-Fluctuation: $\xi_{0\dots k}(t) = \frac{\prod_{p=0}^{k} z_p(t) - \mu_t\left[\prod_{p=0}^{k} z_p\right]}{\sigma_t\left[\prod_{p=0}^{k}z_p\right]}$
+- Co-Fluctuation: $\xi_{0\dots k}(t) = \frac{\prod_{p=0}^{k} z_p(t) - \mu_t\left[\prod_{p=0}^{k} z_p\right]}{\sigma_t\left[\prod_{p=0}^{k}z_p\right]} \quad \text{Note: } \xi_X \leq \xi_{XY} \leq \xi_{XYZ} \text{ not necessary}$ 
 
-- Weights: $w_{0\dots k}(t) = \text{sign}(\xi_{0\dots k}(t)) \cdot |\xi_{0\dots k}(t)|$
+- Weights: $f_{0\dots k}(t) = \text{sign}(\xi_{0\dots k}(t)) \cdot |\xi_{0\dots k}(t)| \quad \operatorname{sign}\big(\xi_{0\ldots k}(t)\big) = (-1)^{\operatorname{sgn}\left((k+1) - \left|\sum_{p=0}^{k} \operatorname{sgn}(z_p(t))\right|\right)}$
 
 .footnote[Andrea Santoro, et al. Higher-order organization of multivariate time series. Nature Physics, January 2023.]
 
@@ -887,11 +928,31 @@ For this, I am computing the time-varying betti numbers, total persistence, pers
 multivariate time series. Nature Physics, January 2023.]
 
 ---
+# Definitions for Metrics
+
+???
+I'm going to briefly define these metrics. 
+
+Once you have a weighted simplicial complex built from pairwise and three-way co-fluctuations, you can get a persistence diagram from it by filtering it--and extract the metrics mentioned earlier. If a simplex has Positive weights, it is called coherent, while a simplex with negative weights is called decoherent. To be more accurate, using the co-fluctuation formula--we don't actually get a simplicial complex. Since the cofluctuation does not have to monotonically increase with the order, we can run into the violation of the closure condition of simplicial complexs. So, for these metrics---If a triangle appears before one of its edges, that is a simplicial violation, likewise for an edge appearing before its nodes. 
+
+Tehse violations are then used to commpute the hypercoherence metric as the percentage of violating coherent triangles. 
+Then, to quantify the overall topology of the filtration, we compute persistent homology of H1 class. Its wasserstein distance from an empty persistence diagram is called hypercomplexity. We can also ask how strong the violations are using average edge violation, and we can decompose hypercomplexity into loops driven by full coherence, full decoherence, or a transition between them.
+
+Lastly, total persistence is the sum of all persistence points, while persistent entropy gives a measure of order in the persistence diagram.
+
+--
+
+![:img 85%, 10%, 20%](figs/simp_metrics0.png)
+--
+![:img 85%, 10%, 20%](figs/simp_metrics1.png)
+
+---
 # Classification Metrics
 
 ???
 
-On this slide, I’m showing the classification performance of the 1D topological metrics we extracted from multivariate EEG signals.
+Once you've these time-varying metrics, you can use each for classifying the eeg signal. 
+On this slide, I’m showing the classification performance of these metrics we extracted from multivariate EEG signals.
 
 On the left, you can see an example topological metric time series computed from the time-varying simplicial complex for particualr patient. The shaded region corresponds to the seizure segment. What we observe is that the metric values increase and become more variable during the ictal period. We apply a simple thresholding approach using the median value of the metric to classify each time point.
 
@@ -1021,9 +1082,11 @@ In this work, I explore the qualititative differences in the persistence diagram
 
 ???
 
-Since the first two types of graphs are asymmetric, I decided to use homoogy theories developed for assymmtric graphs. There are four popoulat types: dowker, flag, persistent path and magnitude homology.
+Since the first two types of graphs are asymmetric, I use homology theories developed specifically for directed graphs. There are four popular approaches: Dowker, flag, persistent path, and magnitude homology.
 
-This figure shows each of their persistence diagrams against a commmon directed graph. Each method captures different types of topological features and hence returns a different persistence diagram.
+This figure shows the corresponding topological summaries for a common directed graph. Each method captures different structural features, and therefore produces a different representation.
+
+One thing to note is that magnitude homology is slightly different—instead of a single filtration parameter, it is computed over two parameters. As a result, it produces a Betti matrix rather than a single persistence diagram. We’ll come back to this later in a couple of slides.
 
 --
 
@@ -1174,6 +1237,10 @@ This slide summarizes the observed persistent homology features for the three gr
 attractors and those with limit cycles attractors. Such changes suggest that these particular constructions
 and homologies are sensitive to differences in the underlying phase space organization---consequently they may be useful for distinguishing between basins associated with fixed points and those associated with limit cycles. 
 
+[EXPAND ON EACH TABLE]
+
+While these observations are currently empirical and based on the specific examples studied here, they suggest that certain combinations of graph construction and homology computation may encode information about the type of attractor present. 
+
 --
 
 <br></br>
@@ -1253,15 +1320,24 @@ th {
 
 .footnote[(1) MH not shown due to trivial results throughout. (2) Cross means no significant points, tick means significant persistence points, 0 means trivial homology.]
 
+--
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph1.mt1[
+Conclusion: Empirical evidence suggests certain graphs and homologies encode attractor information. 
+]
+
+
 ---
 # Future: Generators to Separate Attractor from Basin
 
 ???
 
-While these observations are currently empirical and based on the specific examples studied here, they suggest that certain combinations of graph construction and homology computation may encode information about the type of attractor present. However, just having a persistence diagram is not enough to separate the attractor from the basin. Further work, particularly involving the computation of persistence generators, will be required to determine whether these signals can reliably localize basin boundaries or identify the attractor itself.
+However, just having a persistence diagram is not enough to separate the attractor from the basin. Further work, particularly involving the computation of persistence generators, will be required to determine whether these signals can reliably localize basin boundaries or identify the attractor itself.
 
 Unfortunayely, a central difficulty is that such generators are generally not unique. Even a single long lived homology class may have many valid representatives. 
-If persistent generators can be computed and stably interpreted for these directed filtrations, then they may provide a mechanism for differentiating between the topology of basins of attraction and the topology of the attractors themselves.
+E.g the disk on the left has a single H1 component and the two loops around it are cycle representatives for the same homology class. Similarly, the disk on the right has three H1 components and the two loops shown are possible cycle representatives.
+
+So, If persistent generators can be computed and stably interpreted for these directed filtrations, then they may provide a mechanism for differentiating between the topology of basins of attraction and the topology of the attractors themselves.
 
 
 --
@@ -1283,6 +1359,13 @@ If persistent generators can be computed and stably interpreted for these direct
 <b>Dowker Generator</b>
 </div>
 
+--
+
+![:img 85%, 10%, 25%](figs/white_block2.png)
+
+![:img 55%, 22.5%, 30%](figs/nonunique_generator.webp)
+
+.footnote[Figure taken from Li L, Thompson C, Henselman-Petrusek G, Giusti C and Ziegelmeier L (2021) Minimal Cycle Representatives in Persistent Homology Using Linear Programming: An Empirical Study With User’s Guide. Front. Artif. Intell. 4:681117. doi: 10.3389/frai.2021.681117]
 
 ---
 ???
@@ -1297,7 +1380,14 @@ On that note, I conclude tehe technical part of my defense. The rest of the chap
 # Acknowledgements
 
 ???
-I would like to acknowledge all the intelligent people from various places who I ended up collaborating with over teh last 4 year. 
+I would like to acknowledge all the incredible people I’ve had the privilege of collaborating with over the past four years.
+
+At MSU, I’ve also been fortunate to work with my supervisor, Dr Munch and Dr Max Chumley who graduated last year. Their influence shaped most of my dissertation. 
+I also met some researchers through AMS' Mathematical Research Communities - and connecting with them taught me a lot about asymmetric homologies. 
+Since May of last year, I've also been interning with the Georgia Tech Research Institute. Working there with Dr. Branden Stone gave me a window into research outside of acadaemic labs.
+Finally, I’m grateful to my two collaborators Dr. Mamis and Dr. Subramaniyam for bringing some interesting applications for me to test my algorithms on.
+
+Working with all of them has been a rewarding experience, and I appreciate the time, knowledge, and effort put in by everyone.
 
 --
 
@@ -1314,11 +1404,11 @@ I would like to acknowledge all the intelligent people from various places who I
 
 ???
 
-These productive collaborations led me to have a number of published papers and preprints. An NSF funded computational science fellowship, as well as the Fitch Beach award for outstanding doctoral research in mechanical engineering. 
+These productive collaborations led me to have a number of published papers and preprints, An NSF funded computational science fellowship to access the fastest supercomputer in the US---as well as the Fitch Beach award for outstanding doctoral research in mechanical engineering. 
 
 --
 
-![:img 85%, 5%, 5%](figs/Frontera.png)
+![:img 85%, 5%, 5%](figs/published_papers_defense.png)
 
 ---
 # The End: Where Next?

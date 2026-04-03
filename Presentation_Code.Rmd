@@ -1296,7 +1296,7 @@ th {
 
 <tr><td>Fixed Point</td><td class="highlight">0</td><td>×</td><td class="highlight">0</td><td>×</td><td>✓</td><td>×</td></tr>
 <tr><td>Stable Spiral</td><td class="highlight">0</td><td>×</td><td class="highlight">0</td><td>×</td><td>✓</td><td>×</td></tr>
-<tr><td>Limit Cycle</td><td class="highlight">0</td><td>×</td><td class="highlight">0</td><td>×</td><td>✓</td><td>×</td></tr>
+<tr><td>Limit Cycle</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
 <tr><td>VdP</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
 <tr><td>Duffing</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
 </table>

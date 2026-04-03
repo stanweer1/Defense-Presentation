@@ -1,72 +1,73 @@
----
-title: "Analyzing Stochastic Time Series and Dynamical Systems with Topology, Stochastic Theory and Machine Learning"
-subtitle: "PhD Dissertation Defense"
-author: "**Sunia Tanweer** <br> &mdash; <br> Mechanical Engineering & <br> Computational Mathematics, Sciences and Engineering"
-#date: "`r Sys.Date()`"
-#"`#r Sys.Date()`" (Delete both #)
-output:
-  xaringan::moon_reader:
-    css: ["css/msu.css", default-fonts, "css/gallery.css"]
-    chakra: 'js/remark-latest.min.js'
-    lib_dir: libs
-    seal: true
-    nature:
-      ratio: '16:9'
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      titleSlideClass: [top, left, inverse]
-    self_contained: false # true for embedding on website
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Analyzing Stochastic Time Series and Dynamical Systems with Topology, Stochastic Theory and Machine Learning</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sunia Tanweer   —   Mechanical Engineering &amp;   Computational Mathematics, Sciences and Engineering" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/freezeframe/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":".freeze-gif","trigger":"click","overlay":true,"responsive":true,"warnings":true}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaa3a967cdde473e847a7133106b06ca","expires":1}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: top, left, inverse, title-slide
+
+.title[
+# Analyzing Stochastic Time Series and Dynamical Systems with Topology, Stochastic Theory and Machine Learning
+]
+.subtitle[
+## PhD Dissertation Defense
+]
+.author[
+### <strong>Sunia Tanweer</strong> <br> — <br> Mechanical Engineering &amp; <br> Computational Mathematics, Sciences and Engineering
+]
 
 ---
+
 
 background-image: url("people/people.png")
 background-size: 1200px
 background-position: 100% 65%
-<!-- ------------------------------------------------------- -->
-<!-- DO NOT REMOVE -->
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- DO NOT REMOVE --&gt;
 
-```{r setup, include=FALSE}
-library(knitr)
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE)
-knitr::opts_chunk$set(fig.align = 'center')
-```
 
-```{r xaringan-panelset, echo=FALSE}
-xaringanExtra::use_panelset()
-```
 
-```{r xaringan-tile-view, echo=FALSE}
-xaringanExtra::use_tile_view()
-```
 
-```{r xaringan-tachyons, echo=FALSE}
-xaringanExtra::use_tachyons()
-```
 
-```{r xaringanExtra-freezeframe, echo=FALSE}
-xaringanExtra::use_freezeframe(
-  selector = ".freeze-gif",
-  trigger = "click",
-  overlay = TRUE,
-  responsive = TRUE
-)
-```
 
-```{r xaringan-editable, echo=FALSE}
-xaringanExtra::use_editable(expires = 1)
-```
 
-```{r xaringan-scribble, echo=FALSE}
-xaringanExtra::use_scribble()
-```
 
-<!-- ------------------------------------------------------- -->
-<!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)-->
 
-<!-- ------------------------------------------------------- -->
-<!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)-->
+
+
+
+
+
+
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
+
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
 
 # Acknowledgements for This Work
 
@@ -101,7 +102,7 @@ My objective for this dissertation was to leverage stochsatic systems theory, ma
 
 --
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 .bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph1.mt1[
 Objective: Leverage stochastic systems theory and topological data analysis for studying dynamical systems
@@ -164,11 +165,11 @@ As you can see, all the spaces have one connected component, so they all have 0-
 
 .pull-left[
 ### What is Homology?
-A topological invariant which assigns a vector space, $H_k(X)$, to a given topological space $X$.
+A topological invariant which assigns a vector space, `\(H_k(X)\)`, to a given topological space `\(X\)`.
 
 ### Dimension:
 
-$k$ is the dimension
+`\(k\)` is the dimension
 
 - 0: Clusters
 - 1: Holes
@@ -199,20 +200,20 @@ A way to watch how the homology of a filtration (sequence) of topological spaces
 
 --
 
-.center[Given topological space $K$ and filtration
+.center[Given topological space `\(K\)` and filtration
 
-$K_0 \subseteq K_1 \subseteq K_2  \subseteq \cdots \subseteq K_n$
+`\(K_0 \subseteq K_1 \subseteq K_2  \subseteq \cdots \subseteq K_n\)`
 
 gives a sequence of maps on  homology
 
-$H_1(K_0) \xrightarrow{} H_1(K_1) \xrightarrow{} H_1(K_2) \xrightarrow{} \cdots \xrightarrow{} H_1(K_n)$
+`\(H_1(K_0) \xrightarrow{} H_1(K_1) \xrightarrow{} H_1(K_2) \xrightarrow{} \cdots \xrightarrow{} H_1(K_n)\)`
 ]
 
 --
 .center[
-Appearance $\xrightarrow{}$ Birth (b)
+Appearance `\(\xrightarrow{}\)` Birth (b)
 
-Disappearance $\xrightarrow{}$ Death (d)
+Disappearance `\(\xrightarrow{}\)` Death (d)
 
 Encoded on **Persistence Diagrams** as (b, d)
 ]
@@ -328,10 +329,10 @@ Okay, so jumping into some mathematical background for this. The theorem on pers
 
 .footnote[Perez, D.: On C0-persistent homology and trees (2020). arXiv:2012.02634]
 
-<!--- $f: \mathbb{R} \xrightarrow{} \mathbb{R}$ --->
-<!--- $d_f(x,y) = f(x) + f(y) - 2\min {f(\Omega (s))}$ --->
-<!--- $\Omega \text{ is a path from } x \text{ to } y$ --->
-<!--- $T_f = \mathbb{R} / \{x \sim y \iff d_f(x, y) = 0\}$ --->
+&lt;!--- `\(f: \mathbb{R} \xrightarrow{} \mathbb{R}\)` ---&gt;
+&lt;!--- `\(d_f(x,y) = f(x) + f(y) - 2\min {f(\Omega (s))}\)` ---&gt;
+&lt;!--- `\(\Omega \text{ is a path from } x \text{ to } y\)` ---&gt;
+&lt;!--- `\(T_f = \mathbb{R} / \{x \sim y \iff d_f(x, y) = 0\}\)` ---&gt;
 
 ![:img 50%, 10%, 20%](figs/function2tree.png)
 --
@@ -356,7 +357,7 @@ That is, each branch in the tree we constructed corresponds to one point in the 
 --
 .footnote[Perez, D.: On C0-persistent homology and trees (2020). arXiv:2012.02634]
 
-<!--- ![:img 50%, 25%, 15%](figs/tree_to_barcode.png) --->
+&lt;!--- ![:img 50%, 25%, 15%](figs/tree_to_barcode.png) ---&gt;
 
 ![:img 30%, 15%, 35%](figs/tree1.jpg)
 --
@@ -390,33 +391,33 @@ Then once we have this region of epsilons, we calculate the slope of this fitted
 
 --
 
-<!--- $\mathbb{E}[N^\epsilon] = \frac{[M]_t}{2\epsilon^2} + \frac{2}{3} + 2\sum_{k \geq 1}(2(-1)^k - 1)\frac{\exp{\left(-\pi^2 k^2 [M]_t / 2\epsilon^2[M]_t\right)}}{\epsilon^2}\left[1 + \frac{\epsilon^2}{\pi^2 k^2 [M]_t}\right]$ --->
+&lt;!--- `\(\mathbb{E}[N^\epsilon] = \frac{[M]_t}{2\epsilon^2} + \frac{2}{3} + 2\sum_{k \geq 1}(2(-1)^k - 1)\frac{\exp{\left(-\pi^2 k^2 [M]_t / 2\epsilon^2[M]_t\right)}}{\epsilon^2}\left[1 + \frac{\epsilon^2}{\pi^2 k^2 [M]_t}\right]\)` ---&gt;
 
 .footnote[D. Perez, "On the persistent homology of almost surely c0 stochastic processes,” Journal of Applied and Computational Topology, vol. 7, pp. 879–906, July 2023.]
 
-<!--- .absolute.top-4.right-1.pa3.bg-light-gray.br3.shadow-1[$$[X]_t = \sum_{k=1}^n (X_{t_k} - X_{t_{k-1}})^2$$] --->
+&lt;!--- .absolute.top-4.right-1.pa3.bg-light-gray.br3.shadow-1[$$[X]_t = \sum_{k=1}^n (X_{t_k} - X_{t_{k-1}})^2$$] ---&gt;
 
 --
 
-- Number of bars of length $\geq \epsilon$
+- Number of bars of length `\(\geq \epsilon\)`
 
-$N_\epsilon = \frac{[X]_t}{2\epsilon^2} \text{ as } \epsilon \rightarrow{} 0 \text{ where }[X]_t = \int_0^t \sigma_s^2 ds$
+`\(N_\epsilon = \frac{[X]_t}{2\epsilon^2} \text{ as } \epsilon \rightarrow{} 0 \text{ where }[X]_t = \int_0^t \sigma_s^2 ds\)`
 
 ![:img 20%, 75%, 10%](figs/short_barcode.png)
 
 --
 
-<br></br>
+&lt;br&gt;&lt;/br&gt;
 
-> How to use this for discrete signals?
+&gt; How to use this for discrete signals?
 
-<br></br>
+&lt;br&gt;&lt;/br&gt;
 
 --
 
-- $K(\epsilon) = \frac{N_\epsilon^{\text{emp}}}{N_\epsilon^{\text{theory}}} \approx 1 \quad \text{across small scale}$
+- `\(K(\epsilon) = \frac{N_\epsilon^{\text{emp}}}{N_\epsilon^{\text{theory}}} \approx 1 \quad \text{across small scale}\)`
 
-- $\log N_\epsilon \sim s \log \epsilon \text{ with } s \approx -2$
+- `\(\log N_\epsilon \sim s \log \epsilon \text{ with } s \approx -2\)`
 
 ![:img 30%, 65%, 50%](figs/brownian_loglog.png)
 ---
@@ -525,9 +526,9 @@ Since the dataset is not labeled in terms of stochastic vs. deterministic behavi
 
 --
 
-<br></br>
+&lt;br&gt;&lt;/br&gt;
 
-| Animals | Natural soundscapes & water sounds | Human, non-speech sounds | Interior/domestic sounds | Exterior/urban noises |
+| Animals | Natural soundscapes &amp; water sounds | Human, non-speech sounds | Interior/domestic sounds | Exterior/urban noises |
 | :--- | :--- | :--- | :--- | :--- |
 | Dog | Rain | Crying baby | Door knock | Helicopter |
 | Rooster | Sea waves | Sneezing | Mouse click | Chainsaw |
@@ -556,42 +557,42 @@ That wraps up the chapter on distinguishing stochastic from non stochastic. The 
 
 --
 
-<div style="text-align:center;">
+&lt;div style="text-align:center;"&gt;
 
-  <!-- Images (click to flip/play audio) -->
-  <img id="img1" src="figs/thunderstorm_real.jpg"
+  &lt;!-- Images (click to flip/play audio) --&gt;
+  &lt;img id="img1" src="figs/thunderstorm_real.jpg"
        data-default="figs/thunderstorm_real.jpg"
        data-alt="figs/thunderstorm.png"
        style="width:30%; cursor:pointer; margin-right:1%;"
-       onclick="playAudioAndSwap('audio1','img1')">
+       onclick="playAudioAndSwap('audio1','img1')"&gt;
 
-  <img id="img2" src="figs/chainsaw_real.jpg"
+  &lt;img id="img2" src="figs/chainsaw_real.jpg"
        data-default="figs/chainsaw_real.jpg"
        data-alt="figs/chainsaw.png"
        style="width:30%; cursor:pointer; margin-right:1%;"
-       onclick="playAudioAndSwap('audio2','img2')">
+       onclick="playAudioAndSwap('audio2','img2')"&gt;
 
-  <img id="img3" src="figs/clock_alarm_real.png"
+  &lt;img id="img3" src="figs/clock_alarm_real.png"
        data-default="figs/clock_alarm_real.png"
        data-alt="figs/clock_alarm.png"
        style="width:30%; cursor:pointer;"
-       onclick="playAudioAndSwap('audio3','img3')">
+       onclick="playAudioAndSwap('audio3','img3')"&gt;
 
-</div>
+&lt;/div&gt;
 
 --
 
-<!-- Box appears on next click using fragment -->
+&lt;!-- Box appears on next click using fragment --&gt;
 .bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph2.pv1.fragment[
 Preprint available at https://arxiv.org/abs/2601.06009 and under review at Chaos.
 ]
 
-<!-- Audio elements -->
-<audio id="audio1" src="figs/thunderstorm.wav"></audio>
-<audio id="audio2" src="figs/chainsaw.wav"></audio>
-<audio id="audio3" src="figs/clock_alarm.wav"></audio>
+&lt;!-- Audio elements --&gt;
+&lt;audio id="audio1" src="figs/thunderstorm.wav"&gt;&lt;/audio&gt;
+&lt;audio id="audio2" src="figs/chainsaw.wav"&gt;&lt;/audio&gt;
+&lt;audio id="audio3" src="figs/clock_alarm.wav"&gt;&lt;/audio&gt;
 
-<script>
+&lt;script&gt;
 function playAudioAndSwap(audioId, imgId) {
   const audio = document.getElementById(audioId);
   const img = document.getElementById(imgId);
@@ -609,7 +610,7 @@ function playAudioAndSwap(audioId, imgId) {
     img.src = img.dataset.default;
   };
 }
-</script>
+&lt;/script&gt;
 
 ---
 
@@ -630,32 +631,32 @@ In EEG of an epileptic patient, three types of regimes can be found. A normal/in
 
 --
 
-<br>
+&lt;br&gt;
 
 Three types of regimes:
 
 --
 
 ![:img 30%, 5%, 35%](figs/normal.png)
-<div style="position: absolute; left:15%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Interictal</b>
-</div>
+&lt;div style="position: absolute; left:15%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Interictal&lt;/b&gt;
+&lt;/div&gt;
 
 --
 
 ![:img 30%, 35%, 35%](figs/sporadic.png)
 
-<div style="position: absolute; left:46%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Preictal</b>
-</div>
+&lt;div style="position: absolute; left:46%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Preictal&lt;/b&gt;
+&lt;/div&gt;
 
 --
 
 ![:img 30%, 65%, 35%](figs/spiking.png)
 
-<div style="position: absolute; left:78%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Ictal</b>
-</div>
+&lt;div style="position: absolute; left:78%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Ictal&lt;/b&gt;
+&lt;/div&gt;
 
 ---
 # Topological Machine Learning
@@ -714,19 +715,19 @@ Featurizing the persistence diagrams from these signals and training classifiers
 
 --
 
-$\dot{\color{green}{x_0}} = \color{green}{x_3}$
+`\(\dot{\color{green}{x_0}} = \color{green}{x_3}\)`
 
-$\dot{\color{green}{x_3}} = 0.06\mathcal{S}(\color{green}{x_1} - \color{green}{x_2})-0.02\color{green}{x_3}-0.01^2\color{green}{x_0}$
+`\(\dot{\color{green}{x_3}} = 0.06\mathcal{S}(\color{green}{x_1} - \color{green}{x_2})-0.02\color{green}{x_3}-0.01^2\color{green}{x_0}\)`
 
-$\dot{\color{green}{x_1}} = \color{green}{x_4}$
+`\(\dot{\color{green}{x_1}} = \color{green}{x_4}\)`
 
-$\dot{\color{green}{x_4}} = 0.06(\color{red}{p} + 108\mathcal{S}(135 \color{green}{x_0})) - 0.02\color{green}{x_4} - 0.01^2\color{green}{x_1}$
+`\(\dot{\color{green}{x_4}} = 0.06(\color{red}{p} + 108\mathcal{S}(135 \color{green}{x_0})) - 0.02\color{green}{x_4} - 0.01^2\color{green}{x_1}\)`
 
-$\dot{\color{green}{x_2}} = \color{green}{x_5}$
+`\(\dot{\color{green}{x_2}} = \color{green}{x_5}\)`
 
-$\dot{\color{green}{x_5}} = 0.02\color{blue}{B}(33.75\mathcal{S}(33.75 \color{green}{x_0})) - 0.04\color{green}{x_5} - 0.02^2\color{green}{x_2}$
+`\(\dot{\color{green}{x_5}} = 0.02\color{blue}{B}(33.75\mathcal{S}(33.75 \color{green}{x_0})) - 0.04\color{green}{x_5} - 0.02^2\color{green}{x_2}\)`
 
-$EEG = \color{green}{x_1} - \color{green}{x_2}$ such that $\mathcal{S}(z) = \frac{5}{1 + e^{0.56(6 - z)}}$, $\color{red}{p} \sim \mathcal{N}(\mu, \sigma)$ and $\color{blue}{B} \in [50, 70]$. 
+`\(EEG = \color{green}{x_1} - \color{green}{x_2}\)` such that `\(\mathcal{S}(z) = \frac{5}{1 + e^{0.56(6 - z)}}\)`, `\(\color{red}{p} \sim \mathcal{N}(\mu, \sigma)\)` and `\(\color{blue}{B} \in [50, 70]\)`. 
 
 .bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph1.mt1[
 100% accuracy with classical ML models and topological features
@@ -750,7 +751,7 @@ The maximum accuracy using these was a little over 85% with all of them combined
 
 ![:img 55%, 30%, 20%](figs/non-topo.png)
 
-<br></br><br></br><br></br>
+&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;
 
 --
 
@@ -794,7 +795,7 @@ The table lists the top 7 classification pipelines. The highest accuracy of 80% 
 The other top performers also use topological features, primarily carlsson coordinates, instead of the standard entropy features.
 
 
-<Seizures often show increased synchronization in lower frequencies like delta and theta, while abnormalities in beta and gamma can reflect disrupted cortical activity. By separating the signal into these bands, we capture physiologically meaningful patterns rather than working with noisy raw data.>
+&lt;Seizures often show increased synchronization in lower frequencies like delta and theta, while abnormalities in beta and gamma can reflect disrupted cortical activity. By separating the signal into these bands, we capture physiologically meaningful patterns rather than working with noisy raw data.&gt;
 
 --
 
@@ -802,13 +803,13 @@ The other top performers also use topological features, primarily carlsson coord
 
 --
 
-<br></br><br></br><br></br><br></br><br></br>
+&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;
 
-<style>
+&lt;style&gt;
 table {
   font-size: 15px;
 }
-</style>
+&lt;/style&gt;
 
 | Rank | Accuracy | Band        | Dim. Red. | Feature               | Classifier          |
 |------|----------|------------|-----------|-----------------------|---------------------|
@@ -872,7 +873,7 @@ A similar study was run for this comparing results by various features. Howver, 
 
 --
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 .bg-washed-green.b--dark-green.ba.bw2.br3.shadow-1.ph1.mt1[
 59.5% balanced accuracy using a regularized deep multilayer perceptron classifier
@@ -889,13 +890,13 @@ First, we normalize all the data. Then we convert each channgel into a separate 
 --
 
 ![:img 45%, 27.5%, 20%](figs/time_series_to_simComp.png)
-<br></br><br></br><br></br>
+&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;
 
-- Normalization: $z_i(t) = \frac{x_i(t) - \mu_t[x_i]}{\sigma_t[x_i]}$
+- Normalization: `\(z_i(t) = \frac{x_i(t) - \mu_t[x_i]}{\sigma_t[x_i]}\)`
 
-- Co-Fluctuation: $\xi_{0\dots k}(t) = \frac{\prod_{p=0}^{k} z_p(t) - \mu_t\left[\prod_{p=0}^{k} z_p\right]}{\sigma_t\left[\prod_{p=0}^{k}z_p\right]} \quad \text{Note: } \xi_X \leq \xi_{XY} \leq \xi_{XYZ} \text{ not necessary}$ 
+- Co-Fluctuation: `\(\xi_{0\dots k}(t) = \frac{\prod_{p=0}^{k} z_p(t) - \mu_t\left[\prod_{p=0}^{k} z_p\right]}{\sigma_t\left[\prod_{p=0}^{k}z_p\right]} \quad \text{Note: } \xi_X \leq \xi_{XY} \leq \xi_{XYZ} \text{ not necessary}\)` 
 
-- Weights: $f_{0\dots k}(t) = \text{sign}(\xi_{0\dots k}(t)) \cdot |\xi_{0\dots k}(t)| \quad \operatorname{sign}\big(\xi_{0\ldots k}(t)\big) = (-1)^{\operatorname{sgn}\left((k+1) - \left|\sum_{p=0}^{k} \operatorname{sgn}(z_p(t))\right|\right)}$
+- Weights: `\(f_{0\dots k}(t) = \text{sign}(\xi_{0\dots k}(t)) \cdot |\xi_{0\dots k}(t)| \quad \operatorname{sign}\big(\xi_{0\ldots k}(t)\big) = (-1)^{\operatorname{sgn}\left((k+1) - \left|\sum_{p=0}^{k} \operatorname{sgn}(z_p(t))\right|\right)}\)`
 
 .footnote[Andrea Santoro, et al. Higher-order organization of multivariate time series. Nature Physics, January 2023.]
 
@@ -968,7 +969,7 @@ Overall, this suggests that certain topological summaries of EEG dynamics carry 
 
 --
 
-<br></br><br></br><br></br>
+&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;
 
 | Metric                    | Mean AUC (± std) | Mean Accuracy (± std) |
 |--------------------------|------------------|----------------------|
@@ -1023,11 +1024,11 @@ Absorption probs can be very sensitive to noise and parameter changes rendering 
 --
 
 .footnote[
-<div style="font-size: 0.6em; line-height: 1.1;">
+&lt;div style="font-size: 0.6em; line-height: 1.1;"&gt;
 (1) George Datseris, Alexandre Wagemakers; Effortless estimation of basins of attraction. Chaos 1 February 2022; 32 (2): 023104. https://doi.org/10.1063/5.0076568
 
 (2) N. Neumann, S. Goldschmidt, and J. Wallaschek, “On the application of set-oriented numerical methods in the analysis of railway vehicle dynamics,” PAMM, vol. 4, p. 578–579, Dec. 2004.
-</div>
+&lt;/div&gt;
 ]
 
 
@@ -1050,7 +1051,7 @@ For this conversion, the state space is partitioned into boxes. Each of these bo
 
 .footnote[
 N. Neumann, S. Goldschmidt, and J. Wallaschek, “On the application of set-oriented numerical methods in the analysis of railway vehicle dynamics,” PAMM, vol. 4, p. 578–579, Dec. 2004.
-</div>
+&lt;/div&gt;
 ]
 
 ![:img 55%, 25%, 20%](figs/markov_chain.png)
@@ -1126,7 +1127,7 @@ Dowker complexes extract topology from binary relations between two matrices, I 
 
 ???
 
-Persistent path and magnitude homologies are built over paths. Given a directed graph, a $p$-path is defined as a sequence of distinct vertices such that an edge exists between each pair of consecutive vertices.
+Persistent path and magnitude homologies are built over paths. Given a directed graph, a `\(p\)`-path is defined as a sequence of distinct vertices such that an edge exists between each pair of consecutive vertices.
 
 So for this 6-node cycle graph. At a path length of 0, we oonly have 6 nodes and no edges. This gives an H0 count of 6 and H1 count of 0. Then at a path length of 1, we get a loop. 
 At a path length of two, edges are added between nodes which can be connected with a distance of 2. 
@@ -1140,10 +1141,10 @@ This then leads to a set of persistence diagrams instead of just 1.
 --
 
 .footnote[
-<div style="font-size: 0.6em; line-height: 1.1;">
+&lt;div style="font-size: 0.6em; line-height: 1.1;"&gt;
 (1) Samir Chowdhury and Facundo Mémoli. 2018. Persistent path homology of directed networks. In Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms (SODA '18). Society for Industrial and Applied Mathematics, USA, 1152–1169. 
-(2) T. Leinster and M. Shulman, “Magnitude homology of enriched categories and metric spaces,” Algebraic & Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021.
-</div>
+(2) T. Leinster and M. Shulman, “Magnitude homology of enriched categories and metric spaces,” Algebraic &amp; Geometric Topology, vol. 21, p. 2175–2221, Oct. 2021.
+&lt;/div&gt;
 ]
 
 ![:img 67.5%, 15%, 17.5%](figs/pph_mh1.png)
@@ -1243,9 +1244,9 @@ While these observations are currently empirical and based on the specific examp
 
 --
 
-<br></br>
+&lt;br&gt;&lt;/br&gt;
 
-<style>
+&lt;style&gt;
 .table-container {
   display: flex;
   justify-content: space-between;
@@ -1270,53 +1271,53 @@ th {
 .highlight {
   background-color: #d4edda;
 }
-</style>
+&lt;/style&gt;
 
-<div class="table-container">
+&lt;div class="table-container"&gt;
 
-<div class="table-box">
-<b>Markov Transition Matrix (TM)</b>
-<table>
-<tr><th>System</th><th colspan="2">PPH</th><th colspan="2">Dowker</th><th colspan="2">Flag</th></tr>
-<tr><td></td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td></tr>
+&lt;div class="table-box"&gt;
+&lt;b&gt;Markov Transition Matrix (TM)&lt;/b&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;System&lt;/th&gt;&lt;th colspan="2"&gt;PPH&lt;/th&gt;&lt;th colspan="2"&gt;Dowker&lt;/th&gt;&lt;th colspan="2"&gt;Flag&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;/tr&gt;
 
-<tr><td>Fixed Point</td><td>✓</td><td class="highlight">×</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-<tr><td>Stable Spiral</td><td>✓</td><td class="highlight">×</td><td>✓</td><td>✓</td><td>0</td><td>0</td></tr>
-<tr><td>Limit Cycle</td><td>✓</td><td class="highlight">✓</td><td>✓</td><td>✓</td><td>0</td><td>0</td></tr>
-<tr><td>VdP</td><td>✓</td><td class="highlight">✓</td><td>✓</td><td>✓</td><td>0</td><td>0</td></tr>
-<tr><td>Duffing</td><td>✓</td><td class="highlight">✓</td><td>✓</td><td>✓</td><td>0</td><td>0</td></tr>
-</table>
-</div>
+&lt;tr&gt;&lt;td&gt;Fixed Point&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Stable Spiral&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Limit Cycle&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;VdP&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Duffing&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
 
-<div class="table-box">
-<b>Hitting Probability Distance (HPD)</b>
-<table>
-<tr><th>System</th><th colspan="2">PPH</th><th colspan="2">Dowker</th><th colspan="2">Flag</th></tr>
-<tr><td></td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td></tr>
+&lt;div class="table-box"&gt;
+&lt;b&gt;Hitting Probability Distance (HPD)&lt;/b&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;System&lt;/th&gt;&lt;th colspan="2"&gt;PPH&lt;/th&gt;&lt;th colspan="2"&gt;Dowker&lt;/th&gt;&lt;th colspan="2"&gt;Flag&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;/tr&gt;
 
-<tr><td>Fixed Point</td><td class="highlight">0</td><td>×</td><td class="highlight">0</td><td>×</td><td>✓</td><td>×</td></tr>
-<tr><td>Stable Spiral</td><td class="highlight">0</td><td>×</td><td class="highlight">0</td><td>×</td><td>✓</td><td>×</td></tr>
-<tr><td>Limit Cycle</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
-<tr><td>VdP</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
-<tr><td>Duffing</td><td class="highlight">✓</td><td>×</td><td class="highlight">✓</td><td>×</td><td>✓</td><td>×</td></tr>
-</table>
-</div>
+&lt;tr&gt;&lt;td&gt;Fixed Point&lt;/td&gt;&lt;td class="highlight"&gt;0&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td class="highlight"&gt;0&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Stable Spiral&lt;/td&gt;&lt;td class="highlight"&gt;0&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td class="highlight"&gt;0&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Limit Cycle&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;VdP&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Duffing&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
 
-<div class="table-box">
-<b>Hitting Probability Matrix (HPM)</b>
-<table>
-<tr><th>System</th><th colspan="2">PPH</th><th colspan="2">Dowker</th><th colspan="2">Flag</th></tr>
-<tr><td></td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td><td>H₀</td><td>H₁</td></tr>
+&lt;div class="table-box"&gt;
+&lt;b&gt;Hitting Probability Matrix (HPM)&lt;/b&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;System&lt;/th&gt;&lt;th colspan="2"&gt;PPH&lt;/th&gt;&lt;th colspan="2"&gt;Dowker&lt;/th&gt;&lt;th colspan="2"&gt;Flag&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;td&gt;H₀&lt;/td&gt;&lt;td&gt;H₁&lt;/td&gt;&lt;/tr&gt;
 
-<tr><td>Fixed Point</td><td>✓</td><td>✓</td><td>✓</td><td>×</td><td>✓</td><td class="highlight">×</td></tr>
-<tr><td>Stable Spiral</td><td>✓</td><td>✓</td><td>✓</td><td>×</td><td>✓</td><td class="highlight">×</td></tr>
-<tr><td>Limit Cycle</td><td>✓</td><td>✓</td><td>✓</td><td>×</td><td>✓</td><td class="highlight">✓</td></tr>
-<tr><td>VdP</td><td>✓</td><td>✓</td><td>✓</td><td>×</td><td>✓</td><td class="highlight">✓</td></tr>
-<tr><td>Duffing</td><td>✓</td><td>✓</td><td>✓</td><td>×</td><td>✓</td><td class="highlight">✓</td></tr>
-</table>
-</div>
+&lt;tr&gt;&lt;td&gt;Fixed Point&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Stable Spiral&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;×&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Limit Cycle&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;VdP&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Duffing&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;✓&lt;/td&gt;&lt;td class="highlight"&gt;✓&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
 
-</div>
+&lt;/div&gt;
 
 .footnote[(1) MH not shown due to trivial results throughout. (2) Cross means no significant points, tick means significant persistence points, 0 means trivial homology.]
 
@@ -1343,21 +1344,21 @@ So, If persistent generators can be computed and stably interpreted for these di
 --
 
 ![:img 25%, 10%, 30%](figs/vander.png)
-<div style="position: absolute; left:15%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Phase Space</b>
-</div>
+&lt;div style="position: absolute; left:15%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Phase Space&lt;/b&gt;
+&lt;/div&gt;
 
 ![:img 25%, 40%, 30%](figs/vander_markov.png)
 
-<div style="position: absolute; left:46%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Markov Chain</b>
-</div>
+&lt;div style="position: absolute; left:46%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Markov Chain&lt;/b&gt;
+&lt;/div&gt;
 
 ![:img 25%, 70%, 30%](figs/generators.png)
 
-<div style="position: absolute; left:72%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica">
-<b>Dowker Generator</b>
-</div>
+&lt;div style="position: absolute; left:72%; top:80%; background-color: #8ebf42; border-radius: 10px; padding: 1%; font-family: Helvetica"&gt;
+&lt;b&gt;Dowker Generator&lt;/b&gt;
+&lt;/div&gt;
 
 --
 
@@ -1395,11 +1396,11 @@ Working with all of them has been a rewarding experience, and I appreciate the t
 
 ---
 
-```{css}
+&lt;style type="text/css"&gt;
 .small-text {
   font-size: 15px;
 }
-```
+&lt;/style&gt;
 
 
 ???
@@ -1434,11 +1435,148 @@ class: center, middle
 
 # Thank You!
 
-<div class="rotating-text">
-  <span>Questions?</span>
-  <span>¿Preguntas?</span>
-  <span>Fragen?</span>
-  <span>質問はありますか？</span>
-  <span>سوالات؟</span> <!-- Urdu -->
-  <span>أسئلة؟</span> <!-- Arabic -->
-</div>
+&lt;div class="rotating-text"&gt;
+  &lt;span&gt;Questions?&lt;/span&gt;
+  &lt;span&gt;¿Preguntas?&lt;/span&gt;
+  &lt;span&gt;Fragen?&lt;/span&gt;
+  &lt;span&gt;質問はありますか？&lt;/span&gt;
+  &lt;span&gt;سوالات؟&lt;/span&gt; &lt;!-- Urdu --&gt;
+  &lt;span&gt;أسئلة؟&lt;/span&gt; &lt;!-- Arabic --&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
